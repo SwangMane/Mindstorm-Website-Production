@@ -85,13 +85,12 @@ export async function fillMinecraftServerStats(page) {
                 
                     if (status.players.sample && status.players.sample.length > 0) {
 
-                        let player_class;
-                        let hover_state;
-
                         // if there are people actually online
                         // create an object inside the playerList array for each player online
                         status.players.sample.forEach(player => {
 
+                            let player_class = null;
+                            let hover_state = null;
 
                             // loop through all owners
                             siteVariables.minecraft_server.special_players.owners.forEach(owner => {
@@ -102,7 +101,7 @@ export async function fillMinecraftServerStats(page) {
                                     player_class = 'owner_class';
                                     hover_state = "Part-owner";
 
-                                    siteVariables.minecraft_server.current_players.push(`<li class="${player_class}" data-description="${hover_state}"><img class="mc-face" src="https://minotar.net/avatar/${player.name}/32"><p>${player.name}</p></l1>`);
+                                    siteVariables.minecraft_server.current_players.push(`<li class="${player_class}" data-description="${hover_state}"><img class="mc-face" src="https://minotar.net/avatar/${player.name}/32"><p>${player.name}</p></li>`);
 
                                 }
                             })
@@ -115,7 +114,7 @@ export async function fillMinecraftServerStats(page) {
                                     player_class = 'moderator_class';
                                     hover_state = "Moderator";
 
-                                    siteVariables.minecraft_server.current_players.push(`<li class="${player_class}"><img class="mc-face" src="https://minotar.net/avatar/${player.name}/32"><p>${player.name}</p></l1>`);
+                                    siteVariables.minecraft_server.current_players.push(`<li class="${player_class}"><img class="mc-face" src="https://minotar.net/avatar/${player.name}/32"><p>${player.name}</p></li>`);
 
                                 }
                             })
@@ -125,7 +124,7 @@ export async function fillMinecraftServerStats(page) {
                             else {
                                 
                                 player_class = 'standard_class';
-                                siteVariables.minecraft_server.current_players.push(`<li class="${player_class}"><img class="mc-face " src="https://minotar.net/avatar/${player.name}/32"><p>${player.name}</p></l1>`);
+                                siteVariables.minecraft_server.current_players.push(`<li class="${player_class}"><img class="mc-face " src="https://minotar.net/avatar/${player.name}/32"><p>${player.name}</p></li>`);
 
                             }
 

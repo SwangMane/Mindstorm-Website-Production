@@ -9,10 +9,9 @@
 
 #######################################
 
+---------------- LAST UPDATED -----------------
+
+6/8/2026 - 12:30PM
 
 ---------------- TO DO LIST -----------------
 
-- make owners/mods cards hoverable and flippable for descriptions
-- add modpack links
-
-- fix current seasons page 

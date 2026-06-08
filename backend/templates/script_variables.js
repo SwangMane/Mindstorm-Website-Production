@@ -39,6 +39,8 @@ export const siteVariables = {
     // all minecraft server details
     minecraft_server: {
 
+        current_modpack_link: 'https://www.curseforge.com/minecraft/modpacks/mindstorm-cobblemon-season-3/preview',
+
         // current player list id 
         current_players_list: 'current_player_list',
 
@@ -79,10 +81,10 @@ export const siteVariables = {
         special_players: {
 
             // all owners
-            owners: [ 'DARKminerKS', 'HillbillyDeluex', 'Blockk', 'Syrmaa_'],
+            owners: [ 'DARKminerKS', 'HillbillyDeluex', 'Blockk', 'sirmah'],
 
             // all moderators
-            moderators: ['theJman12'],
+            moderators: ['Strontium38','theJman12', 'Outlawe', 'Sandor_RAI'],
 
         }
     },
@@ -190,7 +192,7 @@ export const server_announcements = {
     // the list of announcements in order
     announcements: [
         'Mindstorm website version 3 is now live! <a href="login.html">Create an account</a> and join our community! (More coming soon)',
-        'Mindstorm Cobblemon season 3 start date: <span class="underline_text">6/6/2026</span> | <a href="seasons.html">View our current modpack here</a>',
+        `Mindstorm Cobblemon season 3 start date: <span class="underline_text">6/6/2026</span> | <a href=${siteVariables.minecraft_server.current_modpack_link}>View our current modpack here</a>`,
         '<span class="yellow">DARKminerKS</span> will be <span class="yellow">out of town starting 6/12 until 6/19.</span> Please contact all other staff for issues',
         'Please welcome all of our new members!',
     ],
