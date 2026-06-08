@@ -1,0 +1,18 @@
+#######################################
+
+
+  TO RUN THE WEBSERVER
+
+  - NPX SERVE (FRONT END FOLDER)
+  - PYTHON RUN.PY (IN ROOT DIRECTORY FOLDER)
+
+
+#######################################
+
+
+---------------- TO DO LIST -----------------
+
+- make owners/mods cards hoverable and flippable for descriptions
+- add modpack links
+
+- fix current seasons page 

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" class="fira-sans-regular flexed fill_space column">
+
+<!--******************************
+ ***                           ***
+ *** LOGIN/CREATE ACCOUNT PAGE ***
+ ***                           ***
+ ***************************** -->
+
+<!-- HEAD HEAD HEAD -->
+  <head>
+
+    <!-- Page title -->
+    <title>Mindstorm | Login or create account</title>	
+
+    <!-- Viewport / character encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Site author -->
+    <meta name="author" content="DARKminerKS">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="style_main.css">
+    <link rel="stylesheet" href="style_mobile.css">
+
+    <!-- Imported fonts -->
+    <!-- Press start 20 (Pixel Text) | Basic (Std text, thicker) | Mozilla text (basic text, thinner) | Story script (cursive-ish, nice look) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Basic&family=Cinzel:wght@400..900&family=Fira+Sans:wght@100;400;700&family=Press+Start+2P&family=Story+Script&display=swap" rel="stylesheet">
+
+  </head>
+<!-- /HEAD /HEAD /HEAD -->
+
+<!-- BODY BODY BODY --> 
+  <body id="login" class="flexed fill_space column"> <!-- ID'D -->
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div id="page_bcg_1" class="page_background fill_space no_space"></div> <!-- starts visible --> <!-- ID'D -->
+    <div id="page_bcg_2" class="page_background fill_space no_space"></div> <!-- starts hidden --> <!-- ID'D -->
+
+    <!-- HEADER HEADER HEADER -->
+    <header class="flexed">
+
+      <!-- SERVER STATUS ICON | online = green circle | offline = red circle -->
+      <p>Server Status <span id="server_status_icon"></span></p> <!-- ID'D -->
+
+      <!-- NAV ELEMENT -->
+      <nav>
+
+        <!-- NAV BAR-->
+        <ul id="navbar_list"> <!-- ID'D -->
+
+        </ul>
+        <!-- /NAV BAR -->
+
+      </nav>
+      <!-- /NAV ELEMENT -->
+
+      <!-- NAV TITLE ELEMENT | Only visible UNDER 960px screen width -->
+      <div class="nav_title yellow_gradient_txt centered column">
+        <h1 class="no_space centered_text cinzel-bold">Mindstorm</h1>
+        <h2 class="no_space centered_text">A minecraft community</h2>
+      </div>
+
+      <!-- NAV TOGGLE BUTTON | Only visible UNDER 960px screen width -->
+      <button class="nav_toggle" aria-expanded="false" aria-controls="navbar_list">☰</button>
+
+    </header>
+    <!-- /HEADER /HEADER /HEADER -->
+
+
+    <!-- MAIN MAIN MAIN -->
+    <main class="flexed column centered">
+
+      <!-- MAIN PAGE ELEMENT | CONTAINS SERVER DETAILS -->
+      <div class="wrapper_outer flexed centered column max_720 fira-sans-regular" id="login_register"> <!-- ID'D -->
+
+
+
+        <!-- LOGIN ELEMENT | STARTS VISIBLE -->
+        <form id="login_form" class="form_wrap column flexed">
+
+           <h2 class="no_space fira-sans-bold">Welcome Back</h2>
+
+            <!-- EMAIL INPUT -->
+            <input type="email" placeholder="Email" class="fira-sans-regular" id="account_email" required />
+
+            <!-- PASSWORD INPUT -->
+            <div class="password_wrap">
+              <input type="password" placeholder="Password" class="fira-sans-regular passwordInput" id="account_password" required />
+              <button type="button" class="togglePassword">👁</button>
+            </div>
+
+            <!-- LOGIN BUTTON -->
+            <button class="submit_btn" type="submit" id="login_btn" data-action="login" disabled>Login</button>
+
+            <p class="no_space"><a href="#" class="forgot_password" data-action="forgot">Forgot your password?</a></p>
+
+            <P class="no_space"><a href="#" class="create_account" data-action="create">Create an account</a></P>
+          
+        </form>
+
+
+
+        <!-- FORGOT PASSWORD ELEMENT | STARTS HIDDEN -->
+        <form id="forgot_password_form" class="hidden form_wrap column flexed">
+
+           <h2 class="no_space fira-sans-bold">Forgot password</h2>
+
+           <h3 class="no_space fira-sans-bold">Enter your email to recieve a password reset</h3>
+
+            <!-- EMAIL INPUT -->
+            <input type="email" placeholder="Email" required />
+
+            <!-- LOGIN BUTTON -->
+            <button class="submit_btn" type="submit" id="reset_password_btn" disabled>Reset password</button>
+
+            <p class="no_space"><a href="#" class="login_link_account" data-action="login_page">Login</a></p>
+
+            <P class="no_space"><a href="#" class="create_account" data-action="create">Create an account</a></P>
+
+        </form>
+
+
+ 
+        <!-- CREATE ACCOUNT ELEMENT | STARTS HIDDEN -->
+        <form id="create_account_form" class="hidden form_wrap column flexed" method="POST">
+
+           <h2 class="no_space fira-sans-bold">Welcome to Mindstorm!<br><br>Create your account</h2>
+
+           <h3 class="no_space fira-sans-bold">Note: A valid Minecraft account is required for account creation. Only one unique account per player.</h3>
+
+            <!-- EMAIL INPUT -->
+            <input type="text" placeholder="Minecraft username" class="fira-sans-regular" id="input_minecraft_username" required />
+
+            <!-- EMAIL INPUT -->
+            <input type="email" placeholder="Email" class="fira-sans-regular" id="input_create_email" required />
+
+            <!-- PASSWORD INPUT -->
+            <div class="password_wrap">
+              <input type="password" placeholder="Password" class="fira-sans-regular passwordInput" id="input_create_password" required />
+              <button type="button" class="togglePassword">👁</button>
+            </div>
+
+            <!-- PASSWORD INPUT -->
+            <div class="password_wrap">
+              <input type="password" placeholder="Password" class="fira-sans-regular passwordInput" id="input_create_passwordConfirm" required />
+            </div>
+
+            <!-- CREATE ACCOUNT BUTTON -->
+            <button class="submit_btn" type="submit" data-action="createBtn" id="create_account_btn" disabled>Create account</button>
+
+            <p class="no_space"><a href="#" class="forgot_password" data-action="forgot">Forgot your password?</a></p>
+
+            <p class="no_space"><a href="#" class="login_link_account" data-action="login_page">Already a member?</a></p>
+
+        </form>
+
+      </div>
+
+
+      <!-- WRAPPER FOR THE LOGIN POPUP -->
+      <div class="wrapper_outer centered column max_720 fira-sans-regular hidden invisible" id="login_popup_wrapper">
+
+        <!-- button to close the wrapper -->
+        <button class="button flexed centered" type="close" id="close_login_popup_btn">X</button>
+
+        <div id="login_popup"></div>
+
+      </div>
+
+    </main>
+    <!-- /MAIN /MAIN /MAIN -->
+
+
+
+    <footer class="flexed centered offWhite_text">
+      <p>© 2026 Mindstorm. All rights reserved.</p>
+    </footer>
+
+    <!-- ALL SCRIPTS -->
+    <script type="module" src="script_main.js"></script>
+    <script type="module" src="script_login.js" defer></script>
+    <script src="https://mcapi.us/scripts/minecraft.min.js"></script>
+
+  </body>
+<!-- /BODY /BODY /BODY -->
+
+</html>

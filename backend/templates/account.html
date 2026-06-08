@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="fira-sans-regular flexed fill_space column">
+
+<!--******************************
+ ***                           ***
+ ***        INDEX PAGE         ***
+ ***                           ***
+ ***************************** -->
+
+<!-- HEAD HEAD HEAD -->
+  <head>
+
+    <!-- Page title -->
+    <title>Mindstorm | Home</title>	
+
+    <!-- Viewport / character encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Site author -->
+    <meta name="author" content="DARKminerKS">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="style_main.css">
+    <link rel="stylesheet" href="style_mobile.css">
+
+    <!-- Imported fonts -->
+    <!-- Press start 20 (Pixel Text) | Basic (Std text, thicker) | Mozilla text (basic text, thinner) | Story script (cursive-ish, nice look) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Basic&family=Cinzel:wght@400..900&family=Fira+Sans:wght@100;400;700&family=Press+Start+2P&family=Story+Script&display=swap" rel="stylesheet">
+
+  </head>
+<!-- /HEAD /HEAD /HEAD -->
+
+<!-- BODY BODY BODY --> 
+  <body id="account" class="flexed fill_space column"> <!-- ID'D -->
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div id="page_bcg_1" class="page_background fill_space no_space"></div> <!-- starts visible --> <!-- ID'D -->
+    <div id="page_bcg_2" class="page_background fill_space no_space"></div> <!-- starts hidden --> <!-- ID'D -->
+
+    <!-- HEADER HEADER HEADER -->
+    <header class="flexed">
+
+      <!-- SERVER STATUS ICON | online = green circle | offline = red circle -->
+      <p>Server Status <span id="server_status_icon"></span></p> <!-- ID'D -->
+
+      <!-- NAV ELEMENT -->
+      <nav>
+
+        <!-- NAV BAR-->
+        <ul id="navbar_list"> <!-- ID'D -->
+
+        </ul>
+        <!-- /NAV BAR -->
+
+      </nav>
+      <!-- /NAV ELEMENT -->
+
+      <!-- NAV TITLE ELEMENT | Only visible UNDER 960px screen width -->
+      <div class="nav_title yellow_gradient_txt centered column">
+        <h1 class="no_space centered_text cinzel-bold">Mindstorm</h1>
+        <h2 class="no_space centered_text">A minecraft community</h2>
+      </div> <!-- /NAV TITLE -->
+
+      <!-- NAV TOGGLE BUTTON | Only visible UNDER 960px screen width -->
+      <button class="nav_toggle" aria-expanded="false" aria-controls="navbar_list">☰</button>
+
+    </header>
+    <!-- /HEADER /HEADER /HEADER -->
+
+
+    <!-- MAIN MAIN MAIN -->
+    <main class="flexed column centered">
+
+
+      <!-- MAIN PAGE ELEMENT | CONTAINS ACCOUNT DETAILS -->
+      <div class="wrapper_outer flexed centered column max_720" id="account_details"> <!-- ID'D -->
+        
+        <!-- SERVER DETAILS WRAPPER -->
+        <div class="wrapper_inner flexed" id="account_details_wrap_out">
+
+          <img id="account_page_profilePicture" alt="Users profile picture"/>
+
+          <div class="wrapper_inner flexed column" id="account_details_wrap_in">
+
+            <!-- USERNAME -->
+            <P class="account_info_pretext green_gradient_bcg fira-sans-bold yellow">User<span class="account_info_posttext offWhite_text" id="account_page_username"></span></P>
+
+            <!-- USER JOIN DATE -->
+            <P class="account_info_pretext green_gradient_bcg fira-sans-bold yellow">Join date<span class="account_info_posttext offWhite_text" id="account_page_joinDate"></span></P>
+
+            <!-- USER SERVER COINS -->
+            <P class="account_info_pretext green_gradient_bcg fira-sans-bold yellow">Server coins<span class="account_info_posttext offWhite_text" id="account_page_serverCoins"></span></P>
+
+            <!-- USER SERVER RANK -->
+            <P class="account_info_pretext green_gradient_bcg fira-sans-bold yellow">Server role<span class="account_info_posttext offWhite_text" id="account_page_serverRole"></span></P>
+
+            <select id="account_page_styleSelect" class="green_gradient_bcg flexed fira-sans-bold yellow">
+              <option value="" selected disabled>Select your playstyle</option>
+              <option value="Builder">Builder</option>
+              <option value="Redstoner">Redstoner</option>
+              <option value="Survivalist">Survivalist</option>
+              <option value="Explorer">Explorer</option>
+              <option value="Fighter">Fighter</option>
+              <option value="Roleplayer">Roleplayer</option>
+              <option value="Trade Maxer">Trade Maxer</option>
+              <option value="Automator">Automator</option>
+              <option value="Hobbit">Hobbit</option>
+              <option value="Warrior">Warrior</option>
+              <option value="Helper">Helper</option>
+              <option value="Nomad">Nomad</option>
+              <option value="Introvert">Introvert</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="wrapper no_space fill_space flexEnd_centered flexed" id="account_page_buttonWrap">
+
+          <button id="account_page_saveChanges" class="fira-sans-bold" disabled>Save</button>
+
+          <button id="account_page_logout" class="fira-sans-bold">Logout</button>
+        
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <!-- FOOTER ELEMENT | SAME ON ALL PAGES -->
+    <footer class="flexed centered offWhite_text">
+      <p>© 2026 Mindstorm. All rights reserved.</p>
+    </footer>
+
+    <!-- ALL SCRIPTS -->
+    <script type="module" src="script_main.js"></script>
+    <script type="module" src="script_accountPage.js" defer></script>
+    <script src="https://mcapi.us/scripts/minecraft.min.js"></script>
+
+  </body>
+
+
+</html>

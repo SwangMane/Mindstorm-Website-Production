@@ -1,0 +1,373 @@
+/***********************************
+***                              ***
+***      MAIN STYLES SHEET       ***
+***                              ***
+***********************************/
+
+/****************************************************************************
+***                                                                       ***
+***                     *** MEDIA UNDER 1280PX ***                        ***
+***                                                                       ***
+****************************************************************************/
+@media (max-width: 1280px) {
+
+/************************************
+***                               ***
+***    *** HEADER ELEMENTS ***    ***
+***                               ***
+************************************/
+
+  /*** entire header wrap ***/
+  header {
+    padding: 0 2rem;
+
+    width: 100%;
+  }
+
+  /*** nav wrapper ***/
+  nav  {
+    padding: 0;
+  }
+
+  /*** server status ***/
+  header p {
+    display: none;
+  }
+
+/*** END HEADER ELEMENTS ***/
+
+/****************************************************************************************************/
+
+/************************************
+***                               ***
+***     *** MAIN ELEMENTS ***     ***
+***                               ***
+************************************/
+
+    /*** main title tile ***/
+    .main_title h1 {
+      display: block;
+
+      font-size: clamp(6rem, 5rem, 32px);
+
+      margin-block: 0;
+
+      white-space: wrap;
+
+      line-height: 0.9;
+    }
+
+/*** END MAIN ELEMENTS ***/
+
+}
+
+
+
+/****************************************************************************
+***                                                                       ***
+***                      *** MEDIA UNDER 960PX ***                        ***
+***                                                                       ***
+****************************************************************************/
+@media (max-width: 960px) {
+
+/************************************
+***                               ***
+***    *** HEADER ELEMENTS ***    ***
+***                               ***
+************************************/
+
+  /*** entire header wrap ***/
+  header {
+    padding: 0 1.5rem 0 0.5rem;
+  }
+
+  /*** text / link elements inside nav ***/
+  header a {
+    padding: 0.75rem 0.5rem;
+  }
+
+  /*** button to toggle the nav bar ***/
+  .nav_toggle {
+    -webkit-appearance: none;
+    appearance: none;
+
+    border: 0;
+
+    padding: 4px;
+    margin: 0;
+
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1;
+    font-size: 2rem;
+
+    cursor: pointer;
+  }
+
+  /*** title element wrapper on the nav bar ***/
+  .nav_title {
+    display: flex;
+
+    height: 100%;
+
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.9))
+            drop-shadow(0 4px 4px rgba(0,0,0,0.5));
+  }
+
+  /*** Title elements inside the nav bar ***/
+  .nav_title h1, .nav_title h2 {
+    white-space: nowrap;
+  }
+
+  /*** nav main title ***/
+  .nav_title h1 {
+    font-size: 3rem;
+
+    line-height: 1;
+  }
+
+  /*** nav sub title ***/
+  .nav_title h2 {
+    font-size: 1.5rem;
+  }
+
+  /*** nav wrapper ***/
+  nav  {
+    display: none; /*** STARTS HIDDEN ***/
+
+    position: absolute;
+
+    top: 100px;
+    left: 0;
+
+    background: #545454;
+
+    animation: growDown 0.3s ease forwards;
+    transform-origin: top;
+  }
+
+  /*** nav wrapper ***/
+  nav ul  {
+    flex-direction: column;
+  }
+
+  /*** nav bar item wraps ***/
+  nav ul li {
+    box-shadow: inset 0 0 2px 1px black;
+  }
+
+  /*** login link element | inside of nav ul ***/
+  .login_link {
+    margin-left: 0;
+  }
+
+/*** END HEADER ELEMENTS ***/
+
+/****************************************************************************************************/
+
+/************************************
+***                               ***
+***     *** MAIN ELEMENTS ***     ***
+***                               ***
+************************************/
+
+  .main_title h1 {
+    font-size: clamp(3rem, 2rem, 32px);
+  }
+
+  .hidden_mobile {
+    display: none;
+  }
+
+  /*** server info items ***/
+  .server_status_item {
+    font-size: clamp(10px, 0.7rem, 1rem);
+
+    flex-wrap: wrap;
+
+    padding: 0;
+  }
+
+  .about_subtitle {
+    font-size: 1.5rem;
+  }
+  .about_text {
+    font-size: 1.25rem;
+  }
+
+/*** END MAIN ELEMENTS ***/
+
+/************************************
+***                               ***
+*** *** SERVER SEASONS STUFF ***  ***
+***                               ***
+************************************/
+
+  /* seasons list on the seasons page */
+  #server_seasons_list {
+    padding: 1rem 1rem;
+    gap: 2rem;
+  }
+
+  /* wrappers of each season */
+  .season_wrap {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    padding: 1rem;
+  }
+
+  /*** normal text content inside the wrapper ***/
+  #season_expanded_wrapper_out p {
+    font-size: 1.5rem;
+  }
+  #season_expanded_wrapper_out .members_title {
+    font-size: 1.5rem;
+  }
+
+  /*** season detail players list player wrappers ***/
+  #season_expanded_wrapper_in ul li {
+    font-size: 1rem;
+  }
+
+  .current_seasonDetails_listTitles {
+    font-size: 1.25rem;
+
+    white-space: wrap;
+  }
+
+  #current_season_members_list {
+    justify-content: center;
+  }
+
+/*** END SERVER SEASON STUFF ***/
+
+
+/************************************
+***                               ***
+***   *** FORUM PAGE STUFF ***    ***
+***                               ***
+************************************/
+
+    #forum main {
+      padding: 100px 1rem 0 1rem;
+    }
+
+    #forum_wrapper_out {
+      width: 90%;
+
+      padding: 2rem 1rem;  
+    }
+
+/*** END FORUM STUFF ***/
+
+
+/************************************
+***                               ***
+***  *** LOGIN/REGISTER STUFF *** ***
+***                               ***
+************************************/
+
+  /*** PAGE WRAPPER TO LOGIN FORMS ***/
+  #login main {
+    padding: 100px 1rem 0 1rem;
+  }
+
+  /*** WRAPPER TO THE LOGIN/REGISTER FORMS ***/
+  #login_register {
+    width: 90%;
+
+    padding: 2rem 1rem;
+  }
+
+  #login_popup_wrapper {
+
+    width: auto;
+
+    margin: 0 1rem;
+
+  }
+
+  /*** END LOGIN/REGISTER STUFF ***/
+
+  /************************************
+***                               ***
+***   *** ACCOUNT PAGE STUFF ***  ***
+***                               ***
+************************************/
+
+  #account_details p {
+    font-size: 1rem;
+  }
+  #account_details_wrap_in select {
+    font-size: 1rem;
+  }
+
+  .account_info_pretext {
+
+  }
+  .account_info_posttext {
+    margin-left: 8px;
+  }
+
+  #account_page_buttonWrap {
+   justify-content: center;
+  }
+
+
+/*** END ACCOUNT PAGE STUFF ***/ 
+
+
+  /**************************************
+  ***                                 ***
+  *** *** SERVER MINIGAMES STUFF ***  ***
+  ***                                 ***
+  **************************************/
+
+    .game_thumbnail_wrap {
+      width: 100%;
+      min-width: unset;
+      max-width: 320px;
+      aspect-ratio: 5 / 7;
+
+      border-radius: inherit;
+    }
+    #games_list_wrapper {
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+  /*** END MINIGAMES STUFF ***/
+
+
+    .staff_wrapper {
+      max-width: 80%;
+      overflow: hidden;
+    }
+    .staff_wrapper p {
+      padding: 16px 8px;
+      font-size: 1rem;
+    }
+    #about_staffWrap {
+      gap: 2rem 0;
+
+      padding: 1rem 0;
+    }
+
+
+  /*** END MAIN ELEMENTS ***/
+}

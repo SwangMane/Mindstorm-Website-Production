@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="fira-sans-regular flexed fill_space column">
+
+<!--******************************
+ ***                           ***
+ ***        FORUM PAGE         ***
+ ***                           ***
+ ***************************** -->
+
+<!-- HEAD HEAD HEAD -->
+  <head>
+
+    <!-- Page title -->
+    <title>Mindstorm | Forum</title>	
+
+    <!-- Viewport / character encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Site author -->
+    <meta name="author" content="DARKminerKS">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="style_main.css">
+    <link rel="stylesheet" href="style_mobile.css">
+
+    <!-- Imported fonts -->
+    <!-- Press start 20 (Pixel Text) | Basic (Std text, thicker) | Mozilla text (basic text, thinner) | Story script (cursive-ish, nice look) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Basic&family=Cinzel:wght@400..900&family=Fira+Sans:wght@100;400;700&family=Press+Start+2P&family=Story+Script&display=swap" rel="stylesheet">
+
+  </head>
+<!-- /HEAD /HEAD /HEAD -->
+
+<!-- BODY BODY BODY --> 
+  <body id="forum" class="flexed column fill_space"> <!-- ID'D -->
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div id="page_bcg_1" class="page_background fill_space no_space"></div> <!-- starts visible --> <!-- ID'D -->
+    <div id="page_bcg_2" class="page_background fill_space no_space"></div> <!-- starts hidden --> <!-- ID'D -->
+
+    <!-- HEADER HEADER HEADER -->
+    <header class="flexed">
+
+      <!-- SERVER STATUS ICON | online = green circle | offline = red circle -->
+      <p>Server Status <span id="server_status_icon"></span></p> <!-- ID'D -->
+
+      <!-- NAV ELEMENT -->
+      <nav>
+
+        <!-- NAV BAR-->
+        <ul id="navbar_list"> <!-- ID'D -->
+
+        </ul>
+        <!-- /NAV BAR -->
+
+      </nav>
+      <!-- /NAV ELEMENT -->
+
+      <!-- NAV TITLE ELEMENT | Only visible UNDER 960px screen width -->
+      <div class="nav_title yellow_gradient_txt centered column">
+        <h1 class="no_space centered_text cinzel-bold">Mindstorm</h1>
+        <h2 class="no_space centered_text">A minecraft community</h2>
+      </div>
+
+      <!-- NAV TOGGLE BUTTON | Only visible UNDER 960px screen width -->
+      <button class="nav_toggle" aria-expanded="false" aria-controls="navbar_list">☰</button>
+
+    </header>
+    <!-- /HEADER /HEADER /HEADER -->
+
+
+    <!-- MAIN MAIN MAIN -->
+    <main class="flexed column flexStart_centered">
+
+
+      <!-- MAIN TITLE ELEMENT -->
+      <div class="main_title yellow_gradient_txt column flexed">
+        <h1 class="no_space centered_text cinzel-bold">Community forum</h1>
+      </div>   
+
+
+      <!-- MAIN PAGE ELEMENT | CONTAINS FORUM STUFF -->
+      <div class="wrapper_outer flexed centered column max_720" id="forum_wrapper_out">
+
+        <p class="fira-sans-bold no_space">This page is still under construction<br>Please come back soon</p>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="128px" height="128px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1"><defs><style>.cls-1{fill:none;stroke:#020202;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><rect class="cls-1" x="6.6" y="9.98" width="10.8" height="4.05" transform="translate(-4.97 12) rotate(-45)"/><circle class="cls-1" cx="18.68" cy="5.32" r="3.82"/><circle class="cls-1" cx="5.32" cy="18.68" r="3.82"/><path class="cls-1" d="M12,9.14,9.14,12,6.27,9.14H4.36A2.87,2.87,0,0,1,1.5,6.27V4.36l.4.4A2.1,2.1,0,0,0,4.69,5a2,2,0,0,0,.15-3L4.36,1.5H6.27A2.87,2.87,0,0,1,9.14,4.36V6.27Z"/><path class="cls-1" d="M19.64,14.86a2.87,2.87,0,0,1,2.86,2.87v1.91l-.4-.4A2.1,2.1,0,0,0,19.31,19a2,2,0,0,0-.15,3l.48.48H17.73a2.87,2.87,0,0,1-2.87-2.86V17.73L12,14.86,14.86,12l2.87,2.86Z"/></svg>
+
+      </div>
+
+
+    </main>
+    <!-- /MAIN /MAIN /MAIN -->
+
+
+
+    <footer class="flexed centered offWhite_text">
+      <p>© 2026 Mindstorm. All rights reserved.</p>
+    </footer>
+
+    <!-- ALL SCRIPTS -->
+    <script type="module" src="script_main.js"></script>
+    <script src="https://mcapi.us/scripts/minecraft.min.js"></script>
+
+  </body>
+<!-- /BODY /BODY /BODY -->
+
+</html>

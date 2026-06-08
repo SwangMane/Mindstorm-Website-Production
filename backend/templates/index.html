@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="fira-sans-regular">
+
+<!--******************************
+ ***                           ***
+ ***        INDEX PAGE         ***
+ ***                           ***
+ ***************************** -->
+
+<!-- HEAD HEAD HEAD -->
+  <head>
+
+    <!-- Page title -->
+    <title>Mindstorm | Home</title>	
+
+    <!-- Viewport / character encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Site author -->
+    <meta name="author" content="DARKminerKS">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="style_main.css">
+    <link rel="stylesheet" href="style_mobile.css">
+
+    <!-- Imported fonts -->
+    <!-- Press start 20 (Pixel Text) | Basic (Std text, thicker) | Mozilla text (basic text, thinner) | Story script (cursive-ish, nice look) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Basic&family=Cinzel:wght@400..900&family=Fira+Sans:wght@100;400;700&family=Press+Start+2P&family=Story+Script&display=swap" rel="stylesheet">
+
+  </head>
+<!-- /HEAD /HEAD /HEAD -->
+
+<!-- BODY BODY BODY --> 
+  <body id="index"> <!-- ID'D -->
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div id="page_bcg_1" class="page_background fill_space no_space"></div> <!-- starts visible --> <!-- ID'D -->
+    <div id="page_bcg_2" class="page_background fill_space no_space"></div> <!-- starts hidden --> <!-- ID'D -->
+
+    <!-- HEADER HEADER HEADER -->
+    <header class="flexed">
+
+      <!-- SERVER STATUS ICON | online = green circle | offline = red circle -->
+      <p>Server Status <span id="server_status_icon"></span></p> <!-- ID'D -->
+
+      <!-- NAV ELEMENT -->
+      <nav>
+
+        <!-- NAV BAR-->
+        <ul id="navbar_list"> <!-- ID'D -->
+
+        </ul>
+        <!-- /NAV BAR -->
+
+      </nav>
+      <!-- /NAV ELEMENT -->
+
+      <!-- NAV TITLE ELEMENT | Only visible UNDER 960px screen width -->
+      <div class="nav_title yellow_gradient_txt centered column">
+        <h1 class="no_space centered_text cinzel-bold">Mindstorm</h1>
+        <h2 class="no_space centered_text">A minecraft community</h2>
+      </div> <!-- /NAV TITLE -->
+
+      <!-- NAV TOGGLE BUTTON | Only visible UNDER 960px screen width -->
+      <button class="nav_toggle" aria-expanded="false" aria-controls="navbar_list">☰</button>
+
+    </header>
+    <!-- /HEADER /HEADER /HEADER -->
+
+
+    <!-- MAIN MAIN MAIN -->
+    <main class="flexed centered column">
+
+      <!-- MAIN TITLE ELEMENT | Only visible OVER 960px screen width -->
+      <div class="hidden_mobile main_title yellow_gradient_txt column flexed">
+        <h1 class="no_space centered_text cinzel-bold">Mindstorm</h1>
+        <h2 class="no_space centered_text">A Minecraft community</h2>
+      </div>
+
+    <!-- MAIN PAGE ELEMENT | CONTAINS SERVER DETAILS -->
+    <div class="wrapper_outer flexed centered column max_720" id="server_details"> <!-- ID'D -->
+      
+      <!-- SERVER DETAILS WRAPPER -->
+      <div class="wrapper_inner flexed centered" id="server_details_wrap">
+        <img class="server_icon" src="" alt="server Icon">
+
+        <!-- ACTUAL SERVER STATS -->
+        <div class="wrapper flexed left_spaceEvenly column" id="server_status_wrap"> <!-- ID'D -->
+
+        </div>
+
+      </div>
+
+      <!-- LAST UPDATED STATEMENT -->
+      <p id="last_updated"></p> <!-- ID'D -->
+
+      <!-- CURRENT PLAYER LIST WRAPPER -->
+      <div class="wrapper_inner flexed flexStart_centered green_gradient_bcg column">
+
+
+        <p class="center_label green_gradient_bcg offWhite_text centered">Players online</p>
+
+        <!-- current players list -->
+        <ul class="player_list gray_gradient_bcg" id="current_player_list"></ul>
+        
+      </div>
+
+    </div>
+
+
+
+    <!-- MAIN PAGE ELEMENT | CONTAINS SERVER ANNOUNCEMENTS -->
+    <div class="wrapper_outer flexed centered column max_720" id="announcements_wrap"> <!-- ID'D -->
+
+      <!-- SERVER ANNOUNCEMENTS WRAPPER -->
+      <div class="wrapper_inner green_gradient_bcg flexed centered column" id="announcements"> <!-- ID'D -->
+
+        <p class="center_label green_gradient_bcg flexed centered"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#f5d43e"><path d="M720-440v-80h160v80H720Zm48 280-128-96 48-64 128 96-48 64Zm-80-480-48-64 128-96 48 64-128 96ZM200-200v-160h-40q-33 0-56.5-23.5T80-440v-80q0-33 23.5-56.5T160-600h160l200-120v480L320-360h-40v160h-80Zm360-146v-268q27 24 43.5 58.5T620-480q0 41-16.5 75.5T560-346Z"/></svg>&ensp;Announcements</p>
+
+      </div>
+
+    </div>
+
+
+    </main>
+    <!-- /MAIN /MAIN /MAIN -->
+
+
+    <!-- FOOTER ELEMENT | SAME ON ALL PAGES -->
+    <footer class="flexed centered offWhite_text">
+      <p>© 2026 Mindstorm. All rights reserved.</p>
+    </footer>
+
+    <!-- ALL SCRIPTS -->
+    <script type="module" src="script_main.js"></script>
+    <script src="https://mcapi.us/scripts/minecraft.min.js"></script>
+
+  </body>
+<!-- /BODY /BODY /BODY -->
+
+</html>
