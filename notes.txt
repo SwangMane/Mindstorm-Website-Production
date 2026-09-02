@@ -5,6 +5,7 @@
 
   - NPX SERVE (FRONT END FOLDER)
   - PYTHON RUN.PY (IN ROOT DIRECTORY FOLDER)
+  - cloudflared tunnel run mindstormgames (CMD ALONE)
 
 
 #######################################
