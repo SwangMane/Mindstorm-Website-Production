@@ -49,7 +49,7 @@ const games_list = {
       // link to the games page
       link: 'games_blackjack.html',
 
-      playable: false,
+      playable: true,
 
     },
 

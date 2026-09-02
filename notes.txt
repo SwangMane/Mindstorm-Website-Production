@@ -14,5 +14,12 @@
 
 6/8/2026 - 12:30PM
 
+9/2/2026 - General update
+- changed home page messages
+- fixed favicon not showing on seasons page 
+- added a fillFooter function to make footer dynamic
+- made moderators and owners on about page different colors
+- edited some console messages
+
 ---------------- TO DO LIST -----------------
 

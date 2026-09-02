@@ -27,7 +27,7 @@ function fillStaffData() {
 
     // create the div for each player wrapper
     const div = document.createElement('div');
-    div.className = 'staff_wrapper';
+    div.classList = 'staff_wrapper owner_class';
 
     // create text element to place name inside of
     const p = document.createElement('p');
@@ -50,7 +50,7 @@ function fillStaffData() {
 
     // create the div for each player wrapper
     const div = document.createElement('div');
-    div.className = 'staff_wrapper';
+    div.classList = 'staff_wrapper moderator_class';
 
     // create text element to place name inside of
     const p = document.createElement('p');

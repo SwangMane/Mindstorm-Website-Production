@@ -466,7 +466,6 @@
     align-items: center;
     flex-direction: column;
     padding: 1rem;
-    background: linear-gradient(to bottom, #f4d753, #f5d43e);
     border-radius: inherit;
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
             inset 0 0 0 1px rgba(0, 0, 0, 1);

@@ -16,7 +16,7 @@ import { getUserStatus } from './script_login.js';
 export async function fillNavbar(page) {
 
   // log users current viewing page
-  console.log('user currently viewing ' + page + ' page');
+  console.log('Currently viewing: ' + page);
 
   // grab the users login status 
   const userData = await getUserStatus();

@@ -180,6 +180,13 @@ export const siteVariables = {
         modStaff_wrapper: 'about_modWrap'
 
     },
+
+    // footer stuff
+    footer: {
+        
+        // the footers message
+        message: '© 2026 Mindstorm. All rights reserved. Updated 9/2/2026',
+    }
 }
 
 ///////////////////////////////////////////
@@ -191,10 +198,8 @@ export const server_announcements = {
 
     // the list of announcements in order
     announcements: [
-        'Mindstorm website version 3 is now live! <a href="login.html">Create an account</a> and join our community! (More coming soon)',
-        `Mindstorm Cobblemon season 3 start date: <span class="underline_text">6/6/2026</span> | <a href=${siteVariables.minecraft_server.current_modpack_link}>View our current modpack here</a>`,
-        '<span class="yellow">DARKminerKS</span> will be <span class="yellow">out of town starting 6/12 until 6/19.</span> Please contact all other staff for issues',
-        'Please welcome all of our new members!',
+        'Mindstorm is currently on hiatus. Please check back for updates.',
+        'Mindstorm website version 3 is now live! <a href="login.html">Create an account</a> and join our community!'
     ],
 
     // id 

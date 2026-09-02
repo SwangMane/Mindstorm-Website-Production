@@ -8,6 +8,7 @@
 
 import { backgroundSlideshow } from './script_background.js';
 import { fillNavbar } from './script_nav.js';
+import { fillFooter } from './script_footer.js';
 import { fillMinecraftServerStats } from './script_mcserver.js';
 import { createList } from './script_createList.js';
 import { server_announcements, prevSeasonsList, siteVariables } from './script_variables.js';
@@ -39,7 +40,7 @@ async function checkDataServer() {
         // await a response of data
         const data = await response.json();
 
-        console.log(data.status);
+        console.log('Data server: ' + data.status);
 
         return true;
 
@@ -66,6 +67,9 @@ fillNavbar(page);
 
 // fills the minecraft server status if needed
 fillMinecraftServerStats(page);
+
+// fills the footer on each page
+fillFooter();
 
 // if on the index page fill out the announcements list 
 if (page === "index") {
