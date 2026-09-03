@@ -99,16 +99,20 @@ async function fillMinigames() {
   // loop through all games
   for (const game of games_list.games) {
 
+    // if the game is locked by default
     let game_locked = false;
 
+    // the title of the game
     const title = document.createElement('p');
     title.className = games_list.game_list_titles_classes;
     title.textContent = game.title;
 
+    // the description of the game
     const desc = document.createElement('p');
     desc.className = games_list.game_list_description_classes;
     desc.textContent = game.description;
 
+    // start button to the game
     const start_button = document.createElement('button');
     start_button.type = 'button';
     start_button.className = 'minigame_play_button';
