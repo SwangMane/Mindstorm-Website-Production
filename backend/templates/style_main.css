@@ -964,33 +964,6 @@
 
   }
 
-  #game_popout_wrapper {
-
-    position: absolute;
-
-    z-index: 1000;
-
-    width: 1280px;
-    aspect-ratio: 16 / 9;
-
-    top: 55%;
-    left: 50%;
-
-    background: black;
-
-    display: none;
-
-    animation: center_grow 0.5s forwards;
-
-  }
-
-  #close_minigame_button {
-    padding: 0;
-    margin: 0;
-
-    aspect-ratio: 1 / 1;
-  }
-
 /*** END MINIGAMES STUFF ***/
 
 /****************************************************************************************************/

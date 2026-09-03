@@ -14,6 +14,8 @@ import { siteVariables } from './script_variables.js';
 // all mini games on the website
 const games_list = {
 
+  mobile_screen_size: 1280,
+
   game_popout_wrapper: 'game_popout_wrapper',
 
   game_popout_closebtn: 'close_minigame_button',
@@ -90,7 +92,7 @@ async function fillMinigames() {
 
   let mobile_detected = false;
 
-  if (windowWidth < 1400) mobile_detected = true;
+  if (windowWidth < games_list.mobile_screen_size) mobile_detected = true;
 
   // grab the wrapper for the games list
   const listWrap = document.getElementById(games_list.game_list_wrapper);
@@ -252,7 +254,7 @@ function openMiniGame(game) {
   // the games popout wrapper
   const game_popout_wrapper = document.getElementById(games_list.game_popout_wrapper);
   // display the wrapper
-  game_popout_wrapper.style.display = 'flex';
+  game_popout_wrapper.style.display = 'block';
 
 
   const closeBtn = document.getElementById(games_list.game_popout_closebtn);

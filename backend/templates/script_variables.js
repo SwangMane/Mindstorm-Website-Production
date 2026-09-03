@@ -39,6 +39,9 @@ export const siteVariables = {
     // all minecraft server details
     minecraft_server: {
 
+        // fetching server status message
+        fetch_status: 'Fetching server details...',
+
         current_modpack_link: 'https://www.curseforge.com/minecraft/modpacks/mindstorm-cobblemon-season-3/preview',
 
         // current player list id 

@@ -29,7 +29,6 @@ export function loadBlackjack(game) {
   const currGame = game;
 
 
-  // here hre her her e
 
 
 

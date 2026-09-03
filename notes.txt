@@ -21,5 +21,9 @@
 - made moderators and owners on about page different colors
 - edited some console messages
 
+9/3/2026 - General update
+- added fetch server status message to index as a placeholder when fetching
+- 
+
 ---------------- TO DO LIST -----------------
 

@@ -17,13 +17,16 @@ export async function fillMinecraftServerStats(page) {
         // Index page server check stuff
         if (page === "index") {
 
+            // the wrapper for the server status elements
+            let serverInfoWrap = document.querySelector('#server_status_wrap');
+
+            // initial server status fetch message
+            serverInfoWrap.innerHTML = `<p class="server_status_item">${siteVariables.minecraft_server.msg_offine}</p>`
+
             // ping the minecraft server with the IP listed in script_variables.js
             MinecraftAPI.getServerStatus(siteVariables.minecraft_server.ip_address, {
                 port: siteVariables.minecraft_server.port_number
                 }, async function (err, status) {
-
-                // the wrapper for the server status elements
-                let serverInfoWrap = document.querySelector('#server_status_wrap');
 
                 // the current minecraft server image
                 const serverImg = document.querySelector('.server_icon');
@@ -146,7 +149,7 @@ export async function fillMinecraftServerStats(page) {
                 const br = `<br>`;
 
                 // once complete add all elements to the server info wrapper
-                serverInfoWrap.innerHTML += serverStatus + serverIp + minecraftVersion + playerCount;
+                serverInfoWrap.innerHTML = serverStatus + serverIp + minecraftVersion + playerCount;
 
                 // lastly append the meter to the div
                 serverInfoWrap.appendChild(playerCount_meter);
