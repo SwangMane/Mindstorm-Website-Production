@@ -28,11 +28,11 @@ export function loadBlackjack(game) {
   // log the current game being played
   const currGame = game;
 
+  
 
 
 
-
-  console.log("this is the functuon i am looking for");
+  
 
 }
 
