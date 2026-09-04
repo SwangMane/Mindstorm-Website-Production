@@ -23,7 +23,10 @@
 
 9/3/2026 - General update
 - added fetch server status message to index as a placeholder when fetching
-- 
+
+9/4/2026 - General update
+- fixed the mini game opening function
+
 
 ---------------- TO DO LIST -----------------
 

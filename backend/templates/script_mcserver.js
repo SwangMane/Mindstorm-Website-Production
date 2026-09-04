@@ -21,7 +21,7 @@ export async function fillMinecraftServerStats(page) {
             let serverInfoWrap = document.querySelector('#server_status_wrap');
 
             // initial server status fetch message
-            serverInfoWrap.innerHTML = `<p class="server_status_item">${siteVariables.minecraft_server.msg_offine}</p>`
+            serverInfoWrap.innerHTML = `<p class="server_status_item">${siteVariables.minecraft_server.fetch_status}</p>`
 
             // ping the minecraft server with the IP listed in script_variables.js
             MinecraftAPI.getServerStatus(siteVariables.minecraft_server.ip_address, {
@@ -165,7 +165,8 @@ export async function fillMinecraftServerStats(page) {
     });
 }
 
-
+// check if the user is logged in
+// if the player is, show them the server IP
 async function getServerIp() {
 
     try {
