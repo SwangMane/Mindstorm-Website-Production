@@ -154,13 +154,13 @@
     box-sizing: border-box;
     font-size: 1.5rem;
     padding: 0.75rem 1.5rem;
-    text-shadow: 0 0 16px black;
+    text-shadow: 0 0 32px black;
   }
 
   /*** all font colors on the header ***/
   header a, header p {
     color: #faf9eb;
-    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     font-weight: bold;
     white-space: nowrap;
     text-decoration: none;
@@ -1000,6 +1000,61 @@
   }
 
 /*** END ACCOUNT PAGE STUFF ***/ 
+
+/****************************************************************************************************/
+
+/************************************
+***                               ***
+***    *** ADMIN PAGE STUFF ***   ***
+***                               ***
+************************************/
+
+#admin footer {
+  margin-top: auto;
+}
+#admin main {
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+
+#admin main div {
+  padding: var(--std-padding);
+  font-size: var(--std-font-size);
+  gap: 1rem;
+}
+#admin main div select {
+  font-size: var(--lrg-font-size);
+  width: 100%;
+  padding: var(--std-padding) 0;
+}
+#admin main div p {
+  padding: var(--std-padding) var(--lgr-padding);
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--dbl-font-size);
+}
+#admin main div div {
+  border-radius: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 1rem;
+}
+#admin main div div div {
+  padding: 0;
+}
+#admin main div div label {
+  font-size: var(--lrg-font-size);
+}
+#admin main div div input {
+  width: 100%;
+  height: 2rem;
+  font-size: var(--med-font-size);
+}
+#admin main div div button {
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: var(--med-font-size);
+  padding: 0 var(--std-padding);
+}
 
 /****************************************************************************************************/
 

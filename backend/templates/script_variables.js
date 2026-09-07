@@ -87,13 +87,13 @@ export const siteVariables = {
             owners: [ 'DARKminerKS', 'HillbillyDeluex', 'Blockk', 'sirmah'],
 
             // all moderators
-            moderators: ['Lawe', 'IPheI'],
+            moderators: ['Lawe', 'IPheI', 'Strontium38'],
 
         }
     },
 
     // all backend server details
-    data_server: {
+    data_server: { 
 
         // IP to the data server
         ip_address: 'https://mindstormgames.com/api',//'http://localhost:5000',
@@ -106,6 +106,9 @@ export const siteVariables = {
 
         // route to check user login status
         user_status: '/userstatus',
+
+        // ROUTE TO DELETE THE USER + ${USER}
+        delete_user: '/delete-user/',
 
     },
 
@@ -269,6 +272,9 @@ export const siteImages = {
     account: [    "images/backgrounds/background_account_1.png",   /* cave background */ 
                 "images/backgrounds/background_account_2.png",    /* cave background */ 
     ],
+    admin: [
+        "images/backgrounds/cobblemon_season_1_21.png", /* TNT BACKGROUND */
+    ],
     placeHolder: [  "images/placeholder.jpg",   /* Placeholder-image */
     ],
 };
@@ -331,9 +337,9 @@ export const navBarItems = {
                 generateNavItem(item, isActive)
         },
 
-        test: {
-            title: "Test Page",
-            link: "test.html",
+        admin: {
+            title: "Admin",
+            link: "admin.html",
             priority: 6,
             displayed: false,
             contents: (item, isActive = false) =>

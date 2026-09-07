@@ -13,6 +13,7 @@ import { fillMinecraftServerStats } from './script_mcserver.js';
 import { createList } from './script_createList.js';
 import { server_announcements, prevSeasonsList, siteVariables } from './script_variables.js';
 import { createSeasons } from './script_seasons.js';
+import { setupAdminPage } from './script_admin.js';
 
 //-----------------------------------------------------------------//
 
@@ -89,4 +90,11 @@ if (page === "seasons") {
 
     // fill the list of seasons with given information
     createSeasons();
+}
+
+// IF THE USER IS ON THE ADMIN PAGE 
+if (page=== "admin") {
+
+    // SETS UP THE ADMIN PAGE
+    setupAdminPage();
 }

@@ -6,6 +6,10 @@
 
 :root {
 
+  /** ELEMENT SIZES **/
+  --header-height: 100px;
+  --footer-height: 100px;
+
   /** BOX RADIUS'S **/
   --tny-box-radius: 1px;
   --sml-box-radius: 2px;
@@ -25,6 +29,24 @@
   --clr-grn: green;
   --clr-ylw: #f5d43e;
   --clr-off-wht: #faf9eb;
+
+  /** FONT SIZES **/
+  --std-font-size: 1.00rem;
+  --med-font-size: 1.25rem;
+  --lrg-font-size: 1.50rem;
+  --lgr-font-size: 1.75rem;
+  --dbl-font-size: 2.00rem;
+
+  /** PADDING SIZES **/
+  --mcr-padding: 0.25rem;
+  --tny-padding: 0.50rem;
+  --sml-padding: 0.75rem;
+  --std-padding: 1.00rem;
+  --med-padding: 1.25rem;
+  --lrg-padding: 1.50rem;
+  --lgr-padding: 1.75rem;
+  --hge-padding: 2.00rem;
+
 
   
 }

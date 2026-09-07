@@ -47,16 +47,11 @@ export async function fillNavbar(page) {
     // grabs the navBarItems object and filters it
     // object is found in variables.js
     Object.entries(navBarItems.sitePages)
-      .filter(([key, item]) =>
-        typeof item.contents === "function" &&
-        item.displayed === true
-      )
-      .sort(([, a], [, b]) => a.priority - b.priority)
-      .forEach(([key, item]) => {
+      .map(([key, item]) => {
 
         let processedItem = item;
 
-        // CHECK IF THE USER IS LOGGED IN AND DISPLAY ACCORDINGLY
+        // LOGIN
         if (key === "login") {
           processedItem = {
             ...item,
@@ -65,16 +60,31 @@ export async function fillNavbar(page) {
               : "Login"
           };
         }
-      if (key === "test") {
-        processedItem = {
-          ...item,
-          displayed: siteVariables.minecraft_server.special_players.owners.some(
-            (owner) => userData.user.toLowerCase() === owner.toLowerCase()
-          )
-        };
-      }
 
-        html += processedItem.contents(processedItem, key === page);
+        // TEST PAGE — OWNERS ONLY
+        if (key === "admin") {
+          processedItem = {
+            ...item,
+            displayed: siteVariables.minecraft_server.special_players.owners.some(
+              owner =>
+                userData?.user?.toLowerCase() === owner.toLowerCase()
+            )
+          };
+        }
+
+        return [key, processedItem];
+      })
+
+      // NOW filter using processedItem
+      .filter(([key, item]) =>
+        typeof item.contents === "function" &&
+        item.displayed === true
+      )
+
+      .sort(([, a], [, b]) => a.priority - b.priority)
+
+      .forEach(([key, item]) => {
+        html += item.contents(item, key === page);
       });
 
     navList.innerHTML = html;

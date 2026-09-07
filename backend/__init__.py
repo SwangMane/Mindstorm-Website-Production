@@ -37,7 +37,7 @@ def create_app():
         supports_credentials=True,
         origins=["http://localhost:3000", "https://mindstormgames.com"],
         allow_headers=["Content-Type"],
-        methods=["GET", "POST", "OPTIONS"]
+        methods=["GET", "POST", "DELETE", "OPTIONS"]
     )
 
     # blueprints

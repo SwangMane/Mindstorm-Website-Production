@@ -30,6 +30,7 @@
 9/6/2026 - General update
 - sorted the current player list on the site by priority
 - added fade-ins to the current player list to make it look nicer
+- added entire admin page
 
 
 ---------------- TO DO LIST -----------------

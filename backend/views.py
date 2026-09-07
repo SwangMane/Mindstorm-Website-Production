@@ -157,3 +157,77 @@ def debug():
         "auth": current_user.is_authenticated,
         "cookies": dict(request.cookies)
     }
+
+# -------------------------
+#
+# Delete user
+#
+# -------------------------
+@views.route(
+    "/api/delete-user/<string:user_name>",
+    methods=["DELETE"]
+)
+@login_required
+def delete_user(user_name):
+
+    if current_user.user_role != "Owner":
+        return jsonify({"error": "Forbidden"}), 403
+
+    user = User.query.filter_by(user_name=user_name).first()
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({
+        "message": "User deleted successfully"
+    }), 200
+
+
+# -------------------------
+#
+# Change user role
+#
+# -------------------------
+@views.route("/api/change-user-role", methods=["POST"])
+def change_user_role():
+    if not current_user.is_authenticated:
+        return jsonify({
+            "error": "Unauthorized"
+        }), 401
+
+    data = request.get_json()
+
+    role = data.get("role")
+
+    if role is None:
+        return jsonify({
+            "error": "Missing role"
+        }), 400
+
+    current_user.user_role = role
+
+    db.session.commit()
+
+    return jsonify({
+        "success": True,
+        "role": current_user.user_role
+    }), 200
+
+# -------------------------
+#
+# Check user role
+#
+# -------------------------
+@views.route("/api/user-role", methods=["GET"])
+def get_user_role():
+    if not current_user.is_authenticated:
+        return jsonify({
+            "error": "Unauthorized"
+        }), 401
+
+    return jsonify({
+        "role": current_user.user_role
+    }), 200
