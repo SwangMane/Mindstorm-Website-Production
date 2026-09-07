@@ -11,37 +11,64 @@
   width: 100vw;
   height: 100vh;
 
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
 
   position: absolute;
 
   z-index: 1000;
 
-  background: rgba(0, 0, 0, 0.4);
-
   display: none;
-
-  animation: center_grow 0.5s forwards;
 
 }
 
-#game_popout_wrapper canvas {
+#game_popout_wrapper #game_background_fader {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  
+  background: rgba(0, 0, 0, 0.6);
+
+  animation: fadeIn 2s forwards;
+}
+
+#game_popout_wrapper #game_wrapper {
+  z-index: 1200;
 
   width: 1280px;
   aspect-ratio: 16 / 9;
 
   position: absolute;
-  top: 50%;
-  left: 50%;
   z-index: inherit;
 
-  transform: translateX(-50%) translateY(-50%);
+  padding: 0;
+  margin: 0;
 
-  background: black;
+  top: 50%;
+  left: 50%;
+
+  animation: center_grow 0.5s forwards;
 
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5);
+}
 
+#game_popout_wrapper canvas {
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+
+  padding: 0;
+  margin: 0;
+
+  background: black;
 }
 
 #close_minigame_button {
@@ -54,8 +81,6 @@
   position: relative;
 
   width: 32px;
-
-  z-index: 1100;
 
   background-color: white;
 

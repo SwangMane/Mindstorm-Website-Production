@@ -60,7 +60,7 @@ export const siteVariables = {
         version_number: "1.21.1",
 
         // current server icon
-        server_icon: "images/cobblemonIcon.png",
+        server_icon: "images/cobblemonIcon4.png",
 
         // server offline message
         msg_offine: `Server is <span class="red">offline</span>`,
@@ -87,7 +87,7 @@ export const siteVariables = {
             owners: [ 'DARKminerKS', 'HillbillyDeluex', 'Blockk', 'sirmah'],
 
             // all moderators
-            moderators: ['Strontium38','theJman12', 'Outlawe', 'Sandor_RAI'],
+            moderators: ['Lawe', 'IPheI'],
 
         }
     },
@@ -202,7 +202,8 @@ export const server_announcements = {
     // the list of announcements in order
     announcements: [
         'Mindstorm is currently on hiatus. Please check back for updates.',
-        'Mindstorm website version 3 is now live! <a href="login.html">Create an account</a> and join our community!'
+        'Mindstorm website version 3 is now live! <a href="login.html">Create an account</a> and join our community!',
+        '<iframe style="margin-left: auto; margin-right: auto;" width="560" height="315" src="https://www.youtube.com/embed/nKokFJ1Nn2E?si=Mkm9WS1qChqwx6uc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
     ],
 
     // id 
@@ -243,6 +244,7 @@ export const siteImages = {
     index: [    "images/backgrounds/season6PicFireworks.jpg",   /* Fireworks-Island-Season5 */ 
                 "images/backgrounds/season4PicTownhall.jpg",    /* season4-Townhall */ 
                 "images/backgrounds/season5PicDarkCastle.jpg",  /* season5-DARKS-Castle */
+                "images/backgrounds/seasoncobblemon_3_7.png",
     ],
     about: [    "images/backgrounds/cobblemon_season_1_14.png",   /* cobblemon season 1 tournament sign */ 
                 "images/backgrounds/season4PicTownhall.jpg",    /* season4-Townhall */ 
@@ -329,6 +331,15 @@ export const navBarItems = {
                 generateNavItem(item, isActive)
         },
 
+        test: {
+            title: "Test Page",
+            link: "test.html",
+            priority: 6,
+            displayed: false,
+            contents: (item, isActive = false) =>
+                generateNavItem(item, isActive)
+        },
+
         login: {
             userData,
 
@@ -340,7 +351,7 @@ export const navBarItems = {
                 ? "account.html"
                 : "login.html",
 
-            priority: 6,
+            priority: 7,
             displayed: true,
             liClass: "login_link",
 
@@ -427,11 +438,20 @@ export const prevSeasonsList = [
         tagName: 'cobS2',
         date: '(Nov 2025 - Dec 2025)',
         version: 'Minecraft: 1.21.1 | Neo-forge',
-        desc: 'The christmas season. The shortest season in Mindstorm history.',
+        desc: 'The christmas season. The second shortest season in Mindstorm history.',
         members: [  "Outlawe", "LordCozzworth","HillbillyDeluex","Syrmaa_","XVI_Legion","KitsuneNoKiubbi","Hunkanator","Blockk","CraftyMessiah","lemoffline","Plu6625","PinkRandie",
                     "CleverFoal11555","GreeeeenThunder","Wash_Killson","Sandor_RAI","_Kitri","Ketshupflasche","_Yes_Sir","SuitFellow","Raccoonaphobic","ChiroRoy","Kyrolol","DARKminerKS","Lexi5536","theJman12","IPheI",
                     "TheShadowRang658","Strontium38","Sam_16_","CyberrGoblin","K_FBI" ],
         pics: genSeasonPics('cobblemon_2', 6, 'png'), //pics: siteImages.placeHolder, //genSeasonPics(?, ?), 
+    },
+    {
+        name: 'Cobblemon Season 3',
+        tagName: 'cobS3',
+        date: '(June 2026 - June 2026)',
+        version: 'Minecraft: 1.21.1 | Neo-forge',
+        desc: 'The nothing season. The shortest season in Mindstorm history.',
+        members: [  "Outlawe", "IPheI", "HillbillyDeluex","Syrmaa_", "KitsuneNoKiubbi", "Blockk", "Strontium38"],
+        pics: genSeasonPics('cobblemon_3', 7, 'png'), //pics: siteImages.placeHolder, //genSeasonPics(?, ?), 
     },
 ]
 

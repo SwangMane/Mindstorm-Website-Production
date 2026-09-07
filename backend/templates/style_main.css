@@ -6,20 +6,16 @@
 
   html, body {
     height: auto;
-
     overflow-x: hidden;
     overflow-y: auto;
-
     padding: 0;
     margin: 0;
-
     font-size: 1rem; /* overall default font size */
   }
 
   button {
     padding: 0;
     margin: 0;
-
     font: inherit;
     color: inherit;
   }
@@ -39,13 +35,10 @@
     position: fixed;
     top: 0;
     left: 0;
-
     overflow: hidden;
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
     transition: opacity 1.5s ease;
   }
   #page_bcg_1 {
@@ -63,9 +56,7 @@
     position: fixed;
     top: 0;
     left: 0;
-
     z-index: 400;
-
     overflow: hidden;
   }
 
@@ -93,34 +84,26 @@
   header {
     width: 100%;
     height: 100px;
-
     z-index: 1000;
-
     position: fixed;
     top: 0;
     left: 0;
-
     background-image: url('images/nav_background.gif');
     background-position: center;
     background-size: auto 150%;
-
     background-color: #545454;
     box-shadow: 0 2px 2px rgb(250, 249, 235, 0.5),
                 0 4px 3px rgb(250, 249, 235, 0.3),
                 0 6px 4px rgb(250, 249, 235, 0.1);
-
     align-items: center;
     justify-content: space-between;
-
     box-sizing: border-box;
-
     padding: 0 2rem;
   }
 
   /*** server status ***/
   header p {
     position: relative;
-
     padding: 0.75rem 1.5rem;
     margin: 0;
   }
@@ -128,18 +111,14 @@
   /*** login link element | inside of nav ul ***/
   .login_link {
     margin-left: auto;
-
     background: linear-gradient(to bottom, #ffb100, #f9A603);
-
     border-radius: 4px;
-
     box-shadow: 0 0 2px 1px black,
                 0 0 4px 2px #faf9eb;
     ;
   }
   .login_link a {
     color: black;
-
     text-shadow: none;
   }
 
@@ -148,12 +127,9 @@
     display: flex;
     position: static;
     transform: none;
-
     width: 100%;
-
     padding: 0 0 0 2rem;
     margin: 0;
-
     list-style-type: none; 
   }
 
@@ -162,9 +138,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-
     list-style-type: none;
-
     display: flex;
     width: 100%;
   }
@@ -177,11 +151,8 @@
   /*** text / link elements inside nav ***/
   header a {
     display: block;
-
     box-sizing: border-box;
-
     font-size: 1.5rem;
-
     padding: 0.75rem 1.5rem;
     text-shadow: 0 0 16px black;
   }
@@ -189,13 +160,9 @@
   /*** all font colors on the header ***/
   header a, header p {
     color: #faf9eb;
-
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-
     font-weight: bold;
-
     white-space: nowrap;
-
     text-decoration: none;
   }
   /* hovered links */
@@ -205,11 +172,8 @@
   /* for current links */
   nav ul li a.active_link { 
     color: #f5d43e;
-
     background: linear-gradient(to bottom, #335155, #283f42);
-
     border-radius: 4px;
-
     box-shadow: 0 0 2px 1px black,
                 0 0 4px 2px #faf9eb;
   }
@@ -230,48 +194,34 @@
 
   /*** title element wrapper | visible over 960px ***/
   .main_title {
-    padding: 2rem 0 0 0;
-
+    padding: 4rem 0 1rem 0;
     filter: drop-shadow(0 2px 2px rgba(0,0,0,0.9))
             drop-shadow(0 4px 4px rgba(0,0,0,0.5));
-
     white-space: nowrap;
   }
   /*** main title tile ***/
   .main_title h1 {
     font-size: 7rem;
-
     margin-block: 0;
-
     line-height: 0.9;
   }
   /*** main title sub title ***/
   .main_title h2 {
     font-size: 3rem;
-
     margin-block: 0;
   }
 
   /*** the center label ***/
   .center_label {
     text-align: center;
-
     width: auto;
-
     font-weight: bold;
-
     padding: 0.5rem 2rem;
-
     border: 1px solid black;
-
     text-shadow: 0 1px 3px rgba(0, 0, 0, 1);
-
     border-radius: inherit;
-
     font-size: 1.75rem;
-
     overflow: hidden;
-
     white-space: nowrap;
   }
 
@@ -284,13 +234,9 @@
   .server_status_item {
     padding: 0 8px;
     margin: 0;
-
     line-height: 1;
-
     font-size: 1.5rem;
-
     white-space: nowrap;
-
     font-weight: 500;
   }
 
@@ -298,7 +244,6 @@
   #last_updated {
     padding: 1rem 0;
     margin: 0;
-
     font-size: 0.75rem;
   }
 
@@ -321,41 +266,29 @@
   .player_list, #announcement_list {
     padding: 0 1rem 2rem 1rem;
     margin: 0;
-
     font-size: 1.25rem;
-
     list-style-type: none;
   }
 
   /*** current player list on index ***/
   .player_list {
     user-select: none;
-
     display: flex;
-
     padding: 1rem;
     margin: 0 0 1rem 0;
     box-sizing: border-box;
-
     flex-wrap: wrap;
-
     gap: 1rem;
-
     width: 90%;
-
     border-radius: inherit;
   }
 
   .player_list li {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     padding: 8px;
-
     border-radius: inherit;
-
     box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5),
                 0 0 2px 4px rgba(0, 0, 0, 0.1);    
   }
@@ -370,18 +303,19 @@
   /*** players actual face image ***/
   .mc-face {
     aspect-ratio: 1 / 1;
-
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4),
                 0 0 2px 2px rgba(0, 0, 0, 0.1);
   }
 
   #announcements_wrap p {
     color: #f4d753;
-
     display: flex;
-
     justify-content: center;
     align-items: center;
+  }
+  .announcement iframe {
+    margin-left: auto;
+    margin-right: auto;
   }
   .announcement {
     padding: 0 0 1rem 0;
@@ -397,7 +331,6 @@
   #player_count_meter {
     width: 80%;
     height: 1rem;
-
     margin: 0;
     padding: 0 0 0 8px;
   }
@@ -441,7 +374,6 @@
   #about_socials a:hover {
     text-decoration: underline;
   }
-
   .about_subtitle {
     text-align: left;
     padding: 1rem;
@@ -458,7 +390,6 @@
     font-size: 2rem;
     text-indent: 2rem;
   }
-
   .staff_wrapper {
     display: flex;
     width: auto;
@@ -526,16 +457,11 @@
   #server_seasons_list {
     margin: 0;
     padding: 2rem 0;
-
     list-style-type: none;
-
     display: flex;
-
     flex-wrap: wrap;
-
     align-items: flex-start;
     justify-content: center;
-
     gap: 2rem;
   }
 
@@ -547,26 +473,18 @@
   /* wrappers of each season */
   .season_wrap {
     display: flex;
-
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     text-align: center;
-
     width: 320px;
-
     aspect-ratio: 5 / 7;
-
     background-size: cover;
     background-position: center;
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
               inset 0 0 0 1px rgba(0, 0, 0, 1);
-
     border-radius: 4px;
-
     padding: 1rem 2rem;
-
     box-sizing: border-box;
   }
   .season_wrap:hover {
@@ -577,50 +495,35 @@
   .season_wrap p {
     margin: 0;
     padding: 0;
-
     text-shadow: 0 0 12px black;
   }
 
   /*** outter wrapper for clicked season detail ***/
   #season_expanded_wrapper_out {
     max-height: calc(100vh - 150px);
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
                 inset 0 0 0 1px rgba(0, 0, 0, 1);
-
     width: calc(100% - 4rem);
     height: auto;
-
     left: 50%;
     top: 125px;
-
     padding: 0;
-
     transform: translate(-50%, 0);
-
     position: fixed;
-
     z-index: 1000;
-
     box-sizing: border-box;
-
     border-radius: inherit;
   }
 
   /*** inner wrapper for clicked season ***/
   #season_expanded_wrapper_in {
     height: auto;
-
     box-sizing: border-box;
-
     border: 1px solid black;
-
     margin: 0;
     padding: 50px 1rem 2rem 1rem;
-
     overflow-y: auto;
     overflow-x: hidden;
-
     border-radius: inherit;
   }
 
@@ -632,7 +535,6 @@
   /* draggable scrollbar */
   #season_expanded_wrapper_in::-webkit-scrollbar-thumb {
     border-radius: 0 4px 4px 0;
-
     background: #666;
   }
 
@@ -645,72 +547,46 @@
   /*** normal text content inside the wrapper ***/
   #season_expanded_wrapper_out p {
     font-size: 2rem;
-
     color: #faf9eb;
-
     margin: 0;
     padding: 1rem;
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
                 inset 0 0 0 1px rgba(0, 0, 0, 1);
   }
 
   .current_season_title {
     text-align: center;
-
     width: auto;
-
     font-weight: bold;
-
     padding: 0.5rem 2rem;
-
     border: 1px solid black;
-
     text-shadow: 0 1px 3px rgba(0, 0, 0, 1);
-
     border-radius: inherit;
-
     font-size: 2.25rem;
-
     overflow: hidden;
-
     white-space: wrap;
   }
 
   .current_season_details_wrapper {
     width: 100%;
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
                 inset 0 0 0 1px rgba(0, 0, 0, 1);
-
     padding: 1rem;
-
     border-radius: inherit;
-
     box-sizing: border-box;  
-
     overflow: hidden;
-
     flex-wrap: wrap;
-
     gap: 1rem;
   }
 
   #seasons .current_seasonDetails_titles {
     font-size: 2rem;
-
     width: auto;
-
     margin: 1rem auto 1rem 0;
-
     border-radius: inherit;
-
     text-align: center;
-
     padding: 0.5rem 2rem;
-
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
             inset 0 0 0 1px rgba(0, 0, 0, 1);
   }
@@ -724,19 +600,12 @@
 
   .current_seasonDetails_listTitles {
     font-size: 1.5rem;
-
     width: auto;
-
     white-space: nowrap;
-
     margin: 0;
-
     border-radius: inherit;
-
     text-align: center;
-
     padding: 1rem; 
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
                 inset 0 0 0 1px rgba(0, 0, 0, 1);
   }
@@ -746,12 +615,11 @@
   }
 
   #current_season_wrapper_inner {
-
     padding: 0 1rem 1rem 1rem;
-
   } 
 
   .current_players_wrapper {
+    opacity: 0;
     display: flex;
     width: auto;
     justify-content: center;
@@ -762,7 +630,9 @@
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
             inset 0 0 0 1px rgba(0, 0, 0, 1);
   }
-
+  .current_players_wrapper.visible {
+    animation: fadeIn 0.5s ease-in forwards;
+  }
   .current_players_wrapper img {
     padding: 0;
     margin: 0;
@@ -782,29 +652,21 @@
 
   #seasons .members_title {
     text-align: center;
-
     padding: 1rem;
-
     font-size: 2rem;
-
     margin: 2rem 0 0 0;
   }
 
   /*** season deetail player list ***/
   #season_expanded_wrapper_in ul {
     list-style-type: none;
-
     display: flex;
     flex-wrap: wrap;
-
     gap: 2rem;
     line-height: 1rem;
-
     box-sizing: border-box;
-
     padding: 1rem;
     margin: 0;
-
     box-shadow:   inset 0 0 1px rgba(255,255,255,0.15),
                   inset 0 0 12px rgba(0,0,0,0.35),
                   inset 0 0 24px rgba(0,0,0,0.2),
@@ -814,7 +676,6 @@
   /*** season detail players list player wrappers ***/
   #season_expanded_wrapper_in ul li {
     padding: 4px;
-
     font-size: 1.25rem;
   }
 
@@ -822,27 +683,20 @@
   #close_seasons {
     width: auto;
     height: auto;
-
     position: fixed;
-
     padding: 0 0.5rem;
     margin: 0;
-
     top: 1rem;
     right: 50%;
-
     transform: translateX(50%);
   }
 
   /*** season titles wrappers ***/
   .season_content {
     background: linear-gradient(to bottom, rgba(80, 127, 134, 1), rgba(51, 85, 73, 1));
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
               inset 0 0 0 1px rgba(0, 0, 0, 1);
-
     border-radius: inherit;
-
     padding: 16px 12px;
   }
 
@@ -861,11 +715,8 @@
     max-width: 960px;
     overflow: hidden;
     position: relative;
-
     box-sizing: border-box;
-
     margin: 48px auto 0;
-
     box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
             0 1px 0 6px #f5d43e,
             0 3px 4px 8px rgba(0, 0, 0, 0.6),
@@ -875,10 +726,8 @@
   .img_track {
     display: flex;
     transition: transform 0.4s ease;
-
     width: auto;
     aspect-ratio: 16 / 9;
-
     padding: 0;
     margin: 0;
   }
@@ -888,11 +737,8 @@
   }
   .season_pictures_Btn {
     position: absolute;
-
     font-size: 1.5rem;
-
     padding: 0.5rem;
-
     top: 50%;
     transform: translateY(-50%);
     z-index: 400;
@@ -927,11 +773,9 @@
     width: 320px;
     min-width: 320px;
     aspect-ratio: 5 / 7;
-
     border-radius: inherit;
     text-align: center;
     overflow: hidden;
-
     box-shadow:       0 0 3px 1px rgba(0, 0, 0, 0.5),
                     0 0 5px 2px rgba(0, 0, 0, 0.2),                      
               inset 0 0 3px 1px rgba(0, 0, 0, 0.6);
@@ -961,7 +805,6 @@
     width: 50%;
     margin-top: auto;
     margin-bottom: 1rem;
-
   }
 
 /*** END MINIGAMES STUFF ***/
@@ -979,13 +822,9 @@
   }
 
   #forum_wrapper_out p {
-
     font-size: 2rem;
-
     text-align: center;
-
     padding: 1rem 0;
-
   }
 
   #forum_wrapper_out svg {
@@ -1011,47 +850,37 @@
   /*** WRAPPER TO THE LOGIN/REGISTER FORMS ***/
   #login_register {
     padding: 1rem 4rem;
-
     width: auto;
   }
 
   /*** login/create account title ***/
   .form_wrap h2 {
     font-size: 2rem;
-
     padding: 0 0 2rem 0;
   }
 
   .form_wrap h3 {
     font-size: 1.5rem;
-
     padding: 0 0 2rem 0;
   }
 
   .form_wrap input {
     height: 24px;
     padding: 4px;
-
     margin: 4px 0;
   }
 
   .form_wrap button {
     margin: 1rem auto;
-
     padding: 0 2rem;
-
     height: 24px;
-
     width: auto;
   }
 
   .form_wrap p {
     text-align: center;
-
     font-size: 1rem;
-
     padding: 0;
-
     margin: 1rem 0 0 0;
   }
 
@@ -1060,22 +889,18 @@
     width: 100%;
     margin: 4px 0;
     padding: 0;
-
     display: flex;
   }
 
   .password_wrap input {
     margin: 0;
-
     flex: 1;
   }
 
   .password_wrap button {
     font-size: 0.75rem;
-
     padding: 0 4px;
     margin: 0;
-
     width: auto;
     height: 100%;
   }
@@ -1083,22 +908,16 @@
   /*** wrapper for the login/create/reset page to notify the user ***/
   #login_popup_wrapper {
     position: absolute;
-
     z-index: 500;
-
     width: auto;
-
     padding-top: 50px;
-
     animation: fadeIn 0.5s forwards;
   }
 
   #login_popup_wrapper button {
     position: absolute;
-
     right: 1rem;
     top: 1rem;
-
     width: 32px;
     aspect-ratio: 1 / 1;
   }
@@ -1161,10 +980,6 @@
     font-size: 1.25rem;
     flex-wrap: nowrap;
     white-space: nowrap;
-  }
-
-  .account_info_pretext {
-
   }
   .account_info_posttext {
     margin-left: 8px;
@@ -1304,9 +1119,7 @@ footer p {
     width: 80%;
     border-bottom: 1px solid currentColor;
     line-height: 1;
-
     padding: 0;
-
     margin: 0 auto 1rem auto;
   }
   .border_box {
@@ -1417,10 +1230,8 @@ footer p {
     }
     .yellow_gradient_txt {
       background: linear-gradient(to bottom, #f4d753, #f5d43e);
-
       -webkit-background-clip: text;
       background-clip: text;
-
       -webkit-text-fill-color: transparent;
         color: transparent;
     }  
@@ -1443,47 +1254,33 @@ footer p {
     
     .wrapper_outer {  /*** OUTER SIDE OF MAIN WRAPPERS ***/
       width: 100%;
-
       margin: 2rem auto;
-
       box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
                   0 1px 0 6px #f5d43e,
                   0 3px 4px 8px rgba(0, 0, 0, 0.6),
                   inset 0 1px 0 1px rgba(0, 0, 0, 0.5);
 
       background: linear-gradient(to bottom, #faf9eb, #d9d8cd);
-
       padding: 0.75rem;
-
       border-radius: 6px;
-
       box-sizing: border-box;
     }
 
     .wrapper_inner {  /*** INNER SIDE OF MAIN WRAPPERS ***/
       width: 100%;
-
       margin: 0;
-
       box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4),
                   inset 0 0 0 1px rgba(0, 0, 0, 1);
-
       padding: 1px;
-
       border-radius: inherit;
-
       box-sizing: border-box;  
-
       overflow: hidden;
     }    
 
     .wrapper {  /*** STANDARD WRAPPER TO USE ***/
       flex: 1;
-
       align-self: stretch;
-
       border-radius: inherit;
-
       box-sizing: border-box;
     }
   /*** END ALL WRAPPERS ***/
@@ -1493,18 +1290,14 @@ footer p {
   /*** THE SERVERS ICON IMAGE ***/ 
     .server_icon {
       display: block;
-
       width: auto;
       height: 100%;
       aspect-ratio: 1 / 1;
-
       object-fit: contain;
-
       border-top-left-radius: inherit;
       border-bottom-left-radius: inherit;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
-
       box-sizing: border-box;
     }
 

@@ -13,102 +13,128 @@ import { siteImages, prevSeasonsList, siteVariables } from './script_variables.j
 // used to create a list with the given specifications | createList(name, 'ID', 'ID', location, spacer, spacerColor, index(list index if wanted), background (if wanted), subtitle (if wanted))
 export async function createSeasons() {
 
-const currPlayersList = await getUsernames();
+  // GRAB THE ENTIRE LIST OF PLAYERS 
+  const currPlayersList = await getUsernames();
 
-const currPlayersListDiv = document.getElementById(siteVariables.seasons_page.current_season_members);
+  // GRAB THE DIV FOR THE PLAYERS
+  const currPlayersListDiv = document.getElementById(siteVariables.seasons_page.current_season_members);
 
-currPlayersList.forEach((player) => {
+  // DECLARE USABLE VARIABLE
+  let divArray = [];
 
-  // create the div for each player wrapper
-  const div = document.createElement('div');
-  div.className = 'current_players_wrapper press-start-2p-regular standard_class';
+  // LOOP THROUGH EACH PLAYER 
+  currPlayersList.forEach((player) => {
 
-  // create text element to place name inside of
-  const p = document.createElement('p');
-  const name = player;
-  p.textContent = name;
+    // create the div for each player wrapper
+    const div = document.createElement('div');
+    div.className = 'current_players_wrapper press-start-2p-regular standard_class';
 
-  // create an image for users profile pic
-  const img = document.createElement('img');
-  img.src = `https://minotar.net/avatar/${name}`;
-  img.className = 'mc-face';
+    // create text element to place name inside of
+    const p = document.createElement('p');
+    const name = player;
+    p.textContent = name;
 
-  let hover_state;
-  hover_state = "standard player"
+    // SORT PRIORITY
+    let priority = 3;
 
-  // loop through all owners
-  siteVariables.minecraft_server.special_players.owners.forEach(owner => {
+    // create an image for users profile pic
+    const img = document.createElement('img');
+    img.src = `https://minotar.net/avatar/${name}`;
+    img.className = 'mc-face';
 
-    // if the players name matches one of the owners names
-    if (player === owner) {
+    let hover_state;
+    hover_state = "standard player"
+
+    // loop through all owners
+    siteVariables.minecraft_server.special_players.owners.forEach(owner => {
+
+      // if the players name matches one of the owners names
+      if (player === owner) {
 
 
-      div.className = 'current_players_wrapper press-start-2p-regular owner_class';
-      hover_state = "Part-Owner";
+        div.classList = 'current_players_wrapper press-start-2p-regular owner_class';
+        hover_state = "Part-Owner";
+        priority = 1;
 
-    }
+      }
+    })
+    // loop through all moderators
+    siteVariables.minecraft_server.special_players.moderators.forEach(moderator => {
+
+      // if the players name matches one of the mods names
+      if (player === moderator){
+
+        div.classList = 'current_players_wrapper press-start-2p-regular moderator_class';
+        hover_state = "Moderator";
+        priority = 2;
+
+      }
+    })
+    
+
+    div.appendChild(p);
+    div.appendChild(img);
+
+    div.dataset.description = hover_state;
+    div.dataset.priority = priority;
+
+    divArray.push(div);
+
+    divArray.sort((a, b) => 
+        Number(a.dataset.priority) - Number(b.dataset.priority)
+    );
+
+    divArray.forEach((playerDiv, index) => {
+        currPlayersListDiv.appendChild(playerDiv);
+
+        setTimeout(() => {
+            playerDiv.classList.add('visible');
+        }, index * 100);
+    });
+
   })
-  // loop through all moderators
-  siteVariables.minecraft_server.special_players.moderators.forEach(moderator => {
 
-    // if the players name matches one of the mods names
-    if (player === moderator){
+  prevSeasonsList.forEach(season => {
+    const li = document.getElementById(season.tagName);
 
-      div.className = 'current_players_wrapper press-start-2p-regular moderator_class';
-      hover_state = "Moderator";
+    if (!li) return;
 
-    }
-  })
-  
-  div.appendChild(p);
-  div.appendChild(img);
-  div.dataset.description = hover_state;
+    // use first picture as background
+    const bgImage = Array.isArray(season.pics)
+    ? season.pics[0]
+    : season.pics;
 
-  currPlayersListDiv.appendChild(div);
+    li.style.backgroundImage = `url(${bgImage})`;
 
-})
+    // create content container
+    const content = document.createElement('div');
+    content.className = 'season_content';
 
-prevSeasonsList.forEach(season => {
-  const li = document.getElementById(season.tagName);
+    // name
+    const nameP = document.createElement('p');
+    nameP.className = 'season_name';
+    nameP.textContent = season.name;
 
-  if (!li) return;
+    // date
+    const dateP = document.createElement('p');
+    dateP.className = 'season_date';
+    dateP.textContent = season.date;
 
-  // use first picture as background
-  const bgImage = Array.isArray(season.pics)
-  ? season.pics[0]
-  : season.pics;
+    li.addEventListener('click', (e) => {
+      e.stopPropagation();
 
-  li.style.backgroundImage = `url(${bgImage})`;
+      // open your menu here
+      console.log(`Open menu for ${season.name}`);
 
-  // create content container
-  const content = document.createElement('div');
-  content.className = 'season_content';
+      openSeason(season.name);
 
-  // name
-  const nameP = document.createElement('p');
-  nameP.className = 'season_name';
-  nameP.textContent = season.name;
+    });
 
-  // date
-  const dateP = document.createElement('p');
-  dateP.className = 'season_date';
-  dateP.textContent = season.date;
+    // append everything
+    content.appendChild(nameP);
+    content.appendChild(dateP);
 
-  li.addEventListener('click', (e) => {
-    e.stopPropagation();
-
-    // open your menu here
-    console.log(`Open menu for ${season.name}`);
-
-    openSeason(season.name);
-
-  });
-
-  // append everything
-  content.appendChild(nameP);
-  content.appendChild(dateP);
-
-  li.appendChild(content);
+    li.appendChild(content);
 
   })
 }

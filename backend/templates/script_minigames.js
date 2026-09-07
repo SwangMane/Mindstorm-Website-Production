@@ -46,7 +46,7 @@ const games_list = {
       description: 'Ante up server points in a game of blackjack',
 
       // if login is required
-      loginRequired: true,
+      loginRequired: false,
 
       // link to the games page
       link: 'games_blackjack.html',

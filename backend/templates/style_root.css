@@ -1,0 +1,30 @@
+/***********************************
+***                              ***
+***      ROOT STYLES SHEET       ***
+***                              ***
+***********************************/
+
+:root {
+
+  /** BOX RADIUS'S **/
+  --tny-box-radius: 1px;
+  --sml-box-radius: 2px;
+  --med-box-radius: 4px;
+  --lrg-box-radius: 6px;
+  --gnt-box-radius: 8px;
+
+  /** BCG GRADIANTS **/
+  --grn-gradient-bcg: linear-gradient(to bottom, #507f86, #335549);
+  --blu-gradient-bcg: linear-gradient(to bottom, #335155, #283f42);
+  --wht-gradient-bcg: linear-gradient(to bottom, #faf9eb, #d9d8cd);
+  --gry-gradient-bcg: linear-gradient(to bottom, #949494, #7a7a7a); 
+  --ylw-gradient-bcg: linear-gradient(to bottom, #ffb100, #f9A603);
+
+  /** GLOBAL COLORS **/
+  --clr-red: red;
+  --clr-grn: green;
+  --clr-ylw: #f5d43e;
+  --clr-off-wht: #faf9eb;
+
+  
+}

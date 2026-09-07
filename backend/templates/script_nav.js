@@ -56,6 +56,7 @@ export async function fillNavbar(page) {
 
         let processedItem = item;
 
+        // CHECK IF THE USER IS LOGGED IN AND DISPLAY ACCORDINGLY
         if (key === "login") {
           processedItem = {
             ...item,
@@ -64,6 +65,14 @@ export async function fillNavbar(page) {
               : "Login"
           };
         }
+      if (key === "test") {
+        processedItem = {
+          ...item,
+          displayed: siteVariables.minecraft_server.special_players.owners.some(
+            (owner) => userData.user.toLowerCase() === owner.toLowerCase()
+          )
+        };
+      }
 
         html += processedItem.contents(processedItem, key === page);
       });
