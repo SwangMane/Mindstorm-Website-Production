@@ -121,10 +121,12 @@ async function mainMenu() {
   // MENU OPTIONS VARIABLES
   let option_wrap;
   let deal_hand;
-  let deal_check;
-  let deal_split;
+  let move_check;
+  let move_split;
+  let bet_amt;
   let bet_up;
   let bet_down;
+
 
   option_wrap = document.createElement('div');
   option_wrap.classList = variables.menus.mainMenu.option_wrap;
@@ -138,5 +140,9 @@ async function mainMenu() {
 
 
 };
+
+function createButton(name, fnct, enabled=false) {
+  
+}
 
 
