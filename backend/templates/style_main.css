@@ -270,6 +270,13 @@
     list-style-type: none;
   }
 
+  #announcement_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   /*** current player list on index ***/
   .player_list {
     user-select: none;
@@ -989,9 +996,7 @@
     width: 100%;
     max-width: 256px;
     border-radius: inherit;
-
     margin: auto;
-
     padding: 0.5rem;
     background: linear-gradient(to bottom, #f4d753, #f5d43e);
     box-shadow:       0 0 3px 1px rgba(0, 0, 0, 0.5),
@@ -1069,24 +1074,18 @@
 
 footer {
   padding: 0;
-
   position: relative;
-
   z-index: 900;
-
   bottom: 0;
 }
 
 footer p {
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
-
   font-style: italic;
-
   padding: 8px 12px;
-
   background: rgba(0, 0, 0, 0.1);
-
   box-shadow: 0 0 1px 4px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
 /*** END FOOTER ELEMENTS ***/

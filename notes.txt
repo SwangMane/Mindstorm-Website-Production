@@ -32,6 +32,10 @@
 - added fade-ins to the current player list to make it look nicer
 - added entire admin page
 
+9/7/2026 - General update
+- added game loading screen
+- added a coin give function on the admin page
+
 
 ---------------- TO DO LIST -----------------
 
