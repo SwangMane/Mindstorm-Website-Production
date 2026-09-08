@@ -34,8 +34,8 @@ def create_app():
     # cors app
     CORS(
         app,
-        supports_credentials=True,
         origins=["http://localhost:3000", "https://mindstormgames.com"],
+        supports_credentials=True,
         allow_headers=["Content-Type"],
         methods=["GET", "POST", "DELETE", "OPTIONS"]
     )

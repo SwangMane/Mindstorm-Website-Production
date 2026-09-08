@@ -14,6 +14,8 @@ export function setupAdminPage() {
 
   setupUserRole();
 
+  setupGiveCoins();
+
 }
 
 // SETS UP THE DELETE USER FUNCTION
@@ -140,4 +142,51 @@ async function setupUserRole() {
   } catch (error) {
     console.error("User role error:", error);
   }
+}
+
+
+// SETS UP THE GIVE COINS FUNCTION
+function setupGiveCoins() {
+
+  // DECLARE VARIABLES
+  const button = document.querySelector('#give_user_coins_btn');
+  const user = document.querySelector('#give_user_coins');
+  const coinAmt = document.querySelector('#give_user_coins_amount');
+
+  // BUTTON STARTS DISABLED
+  button.disabled = true;
+
+  // LISTEN FOR CHANGES TO THE INPUTS
+  function checkInputs() {
+    const hasUser = user.value.trim() !== "";
+    const hasAmount = coinAmt.value.trim() !== "";
+
+    button.disabled = !(hasUser && hasAmount);
+  }
+
+  user.addEventListener('input', checkInputs);
+  coinAmt.addEventListener('input', checkInputs);
+
+  // GIVE COINS
+  button.addEventListener('click', async () => {
+
+    const userName = user.value.trim();
+    const coinAmount = Number(coinAmt.value);
+
+    const response = await fetch("http://localhost:5000/api/give-user-coins", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user_name: userName,
+        coin_amount: coinAmount
+      })
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  });
 }

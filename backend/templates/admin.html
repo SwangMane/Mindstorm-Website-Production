@@ -91,9 +91,18 @@
         </div>
 
         <div class="flexed grayer_gradient_bcg column">
+          <label for="give_user_coins">Give specific user coins (Type users Minecraft ID and click give coins)</label>
+          <div class="flexed grayer_gradient_bcg">
+            <input id="give_user_coins" type="text" placeholder="Enter Minecraft username">
+            <input id="give_user_coins_amount" type="text" placeholder="Enter Coin Amount">
+            <button id="give_user_coins_btn">Give Coins</button>
+          </div>
+        </div>
+
+        <div class="flexed grayer_gradient_bcg column">
           <label for="delete_user_input">Change user role</label>
           <div class="flexed grayer_gradient_bcg">
-            <select id="admin_page_roleSelect" class="green_gradient_bcg flexed fira-sans-bold yellow">
+            <select id="admin_page_roleSelect" class="flexed fira-sans-bold">
               <option value="Default" selected disabled>Select your Role</option>
               <option value="Standard User">Standard user</option>
               <option value="Moderator">Moderator</option>

@@ -17,6 +17,8 @@
   --lrg-box-radius: 6px;
   --gnt-box-radius: 8px;
 
+  /** BORDER THICKNESS'S **/
+
   /** BCG GRADIANTS **/
   --grn-gradient-bcg: linear-gradient(to bottom, #507f86, #335549);
   --blu-gradient-bcg: linear-gradient(to bottom, #335155, #283f42);
@@ -25,10 +27,10 @@
   --ylw-gradient-bcg: linear-gradient(to bottom, #ffb100, #f9A603);
 
   /** GLOBAL COLORS **/
-  --clr-red: red;
-  --clr-grn: green;
-  --clr-ylw: #f5d43e;
-  --clr-off-wht: #faf9eb;
+  --color-red: red;
+  --color-grn: green;
+  --color-ylw: #f5d43e;
+  --color-off-wht: #faf9eb;
 
   /** FONT SIZES **/
   --std-font-size: 1.00rem;
@@ -46,6 +48,12 @@
   --lrg-padding: 1.50rem;
   --lgr-padding: 1.75rem;
   --hge-padding: 2.00rem;
+
+  /** GAP SIZES **/
+  --sml-gap: 0.5rem;
+  --std-gap: 1rem;
+  --med-gap: 1.5rem;
+  --lrg-gap: 2rem;
 
 
   

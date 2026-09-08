@@ -1024,13 +1024,16 @@
 #admin main div select {
   font-size: var(--lrg-font-size);
   width: 100%;
-  padding: var(--std-padding) 0;
+  padding: var(--mcr-padding) 0;
 }
 #admin main div p {
   padding: var(--std-padding) var(--lgr-padding);
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 100%;
+  box-sizing: border-box;
   font-size: var(--dbl-font-size);
+  text-align: center;
 }
 #admin main div div {
   border-radius: inherit;
@@ -1406,6 +1409,16 @@ footer p {
 
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
     }
   }
 

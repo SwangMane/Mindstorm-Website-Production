@@ -11,12 +11,36 @@ import { siteVariables } from './script_variables.js';
 
 //-----------------------------------------------------------------//
 
+// LOADING SCREEN VARIABLES
+const intro_variables = {
+
+  // ANIMATION FRAME COUNT
+  frameCount: 22,
+
+  // HOW LONG UNTIL ANIMATION STARTS
+  initialLoadHold: 1000,
+
+  // HOW LONG TO HOLD THE LAST FRAME
+  endHangTime: 5000,
+
+  // END FADE OUT TIME
+  endFadeTime: 1000,
+
+  // ANIMATION SPEED
+  animationSpeed: 150,
+
+}
+
 // all mini games on the website
-const games_list = {
+export const games_list = {
+
+  current_game: null,
 
   mobile_screen_size: 1280,
 
   game_popout_wrapper: 'game_popout_wrapper',
+
+  game_wrapper: 'game_wrapper',
 
   game_popout_closebtn: 'close_minigame_button',
 
@@ -34,6 +58,8 @@ const games_list = {
   game_locked_unplayable_title: 'This game is still under development',
 
   game_locked_scrWidth_title: 'Games not available on mobile',
+
+  failed_game_load: 'Failed to load game - Please try again later',
 
   games: [
 
@@ -53,6 +79,8 @@ const games_list = {
 
       playable: true,
 
+      needCanvas: false,
+
     },
 
     {
@@ -71,6 +99,8 @@ const games_list = {
 
       playable: false,
 
+      needCanvas: true,
+
     }
 
   
@@ -80,7 +110,12 @@ const games_list = {
 
 let initialized = false;
 
-// fills the mini games list with the provided games
+
+///////////////////////////////////////////
+///                                     ///
+///      FILL THE MINI GAME LIST        ///
+///                                     ///
+///////////////////////////////////////////
 async function fillMinigames() {
 
   if (initialized) return;
@@ -247,26 +282,42 @@ async function fillMinigames() {
   }
 }
 
+fillMinigames();
+
+///////////////////////////////////////////
+///                                     ///
+///    OPENS THE SELECTED MINI GAME     ///
+///                                     ///
+///////////////////////////////////////////
 function openMiniGame(game) {
 
   // store the current game being opened
   const currGame = game;
+  games_list.current_game = game;
   // the games popout wrapper
   const game_popout_wrapper = document.getElementById(games_list.game_popout_wrapper);
+  const game_wrapper = document.getElementById(games_list.game_wrapper);
+
+  let closeBtn;
+
+  closeBtn = document.createElement('button');
+  closeBtn.id = games_list.game_popout_closebtn;
+  closeBtn.textContent = 'X';
+  game_popout_wrapper.append(closeBtn);
+
+  //<button id="close_minigame_button" type="button">X</button>
+
   // display the wrapper
   game_popout_wrapper.style.display = 'block';
 
-
-  const closeBtn = document.getElementById(games_list.game_popout_closebtn);
   closeBtn.addEventListener('click', () => {
 
-    closeMiniGame();
-    console.log("closing");
+    closeMiniGame(game.title);
 
   }, {once: true})
 
 
-  console.log(game.title);
+  console.log('Opening game | ' + game.title);
 
   if (currGame.title === "Blackjack") {
 
@@ -275,13 +326,197 @@ function openMiniGame(game) {
   }
 
 }
-export function closeMiniGame() {
 
+
+///////////////////////////////////////////
+///                                     ///
+///      CLOSE THE CURR MINI GAME       ///
+///                                     ///
+/////////////////////////////////////////// 
+export function closeMiniGame(title) {
+
+  console.log('Closing game | ' + title);
+
+  games_list.current_game = null;
+
+  // MINI GAME WRAPPER;
   const game_popout_wrapper = document.getElementById(games_list.game_popout_wrapper);
+  const game_wrapper = document.getElementById(games_list.game_wrapper);
+  const close_game_btn = document.getElementById('close_minigame_button');
 
+  close_game_btn.remove();
+
+  // clear the game wrapper
+  game_wrapper.innerHTML = '';
+
+  // HIDE THE MINI GAME WRAPPER
   game_popout_wrapper.style.display = 'none';
 
 }
 
 
-fillMinigames();
+///////////////////////////////////////////
+///                                     ///
+///   GRAB THE CURRENT USERS ACC INFO   ///
+///                                     ///
+///////////////////////////////////////////
+export async function loadGamesAccount() {
+
+  try {
+
+  // GRAB THE USERS DATA FROM THE BACKEND
+  const response = await fetch(
+    `${siteVariables.data_server.ip_address}/userinfo`,
+    {
+      method: 'GET',
+      credentials: "include",
+    }
+  );
+
+    // DECLARE VARIABLES
+    let data;
+
+    try {
+      // SAVE THE PLAYERS DATA
+      data = await response.json();
+    } 
+    catch {
+      throw new Error("Invalid server response");
+    }
+
+    // IF THERE IS A BAD DATA RESPONSE
+    if (!response.ok) {
+
+      console.log("FULL SERVER RESPONSE:", data);
+
+      const err = new Error(
+        data?.error || data?.message || "Games page failed | Account fetch"
+      );
+
+      err.code = data?.code;
+      err.status = response.status;
+
+      throw err;
+    }
+
+    // USERS INFO TO PASS TO THE GAME LOADER
+    const picture_link = data.user.user_profilePicture;
+    const username = data.user.user_name;
+    const serverCoins = data.user.user_serverPoints;
+
+    return [picture_link, username, serverCoins];
+
+  // ERROR CATCHER
+  } catch (error) {
+    console.error("Full games page error:", error);
+
+    // CALL FAILED GAME LOAD 
+    failedGameLoad();
+
+    // Better than string matching:
+    switch (error.message) {
+      case "":
+        break;
+    }
+  }
+}
+
+
+///////////////////////////////////////////
+///                                     ///
+///      FAILED TO LOAD THE GAME        ///
+///                                     ///
+///////////////////////////////////////////
+export function failedGameLoad(title) {
+
+  console.log('Failed to load game | ' + title);
+
+  // DECLARE VARIABLES 
+  let p;
+
+  // SETUP VARIABLES
+  p = document.createElement('p');
+  p.textContent = games_list.failed_game_load;
+  p.classList = 'game_error_message';
+
+  // GRAB THE GAME WRAPPER
+  const game_popout_wrapper = document.getElementById(games_list.game_wrapper);
+
+  // APPEND THE MESSAGE TO THE DIV
+  game_popout_wrapper.append(p);
+
+}
+
+///////////////////////////////////////////
+///                                     ///
+///      THE GAME INTRO ANIMATION       ///
+///                                     ///
+///////////////////////////////////////////
+export async function gameIntro(title) {
+
+  console.log('starting game intro | ' + title);
+
+  // GRAB THE GAME WRAPPER
+  const game_wrapper = document.getElementById(games_list.game_wrapper);
+
+  // DECLARE VARIABLES
+  let img;
+
+  // SAVE IMAGES TO AN ARRAY
+  const images = Array.from(
+    { length: intro_variables.frameCount },
+    (_, i) => `images/games/intro/intro_bcg_${i + 1}.png`
+  );
+
+  // CREATE IMAGE
+  img = document.createElement('img');
+  img.style.width = '80%';
+  img.style.height = 'auto';
+  img.style.margin = 'auto auto';
+  img.classList = 'game_intro_image';
+  img.src = images[0];
+
+  // APPEND IMAGE
+  game_wrapper.append(img);
+
+  // WAIT BEFORE STARTING
+  await new Promise(resolve => {
+    setTimeout(resolve, intro_variables.initialLoadHold);
+  });
+
+  // CHECK IF GAME STILL EXISTS
+  if (!games_list.current_game) {
+    img.remove();
+    return;
+  }
+
+  // ANIMATE FRAMES
+  for (let frame = 1; frame < images.length; frame++) {
+
+    // CHECK IF GAME STILL EXISTS
+    if (!games_list.current_game) {
+      img.remove();
+      return;
+    }
+
+    img.src = images[frame];
+
+    await new Promise(resolve => {
+      setTimeout(resolve, intro_variables.animationSpeed);
+    });
+  }
+
+  // FADE OUT
+  setTimeout(() => {
+    img.classList.add('fadeOut');
+  }, intro_variables.endHangTime - intro_variables.endFadeTime);
+
+  // HOLD ON FINAL FRAME
+  await new Promise(resolve => {
+    setTimeout(resolve, intro_variables.endHangTime);
+  });
+
+  // REMOVE IMAGE
+  img.remove();
+}
+
