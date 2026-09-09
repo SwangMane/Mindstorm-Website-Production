@@ -85,6 +85,7 @@ function setupDeleteUser() {
 
           if (!response.ok) {
               console.error("Delete failed:", data);
+              alert('Player ' + '" ' + username + ' "' + ' does not exist in our database. Please check spelling and try again.')
               return;
           }
 
@@ -134,7 +135,7 @@ async function setupUserRole() {
       );
     }
 
-    console.log("Current user role:", data.role);
+    //console.log("Current user role:", data.role);
 
     // Set dropdown to the user's current role
     roleSelect.value = data.role;
@@ -159,11 +160,13 @@ function setupGiveCoins() {
   // LISTEN FOR CHANGES TO THE INPUTS
   function checkInputs() {
     const hasUser = user.value.trim() !== "";
-    const hasAmount = coinAmt.value.trim() !== "";
+    const amount = Number(coinAmt.value);
+    const hasAmount = coinAmt.value.trim() !== "" && Number.isFinite(amount) && amount > 0;
 
     button.disabled = !(hasUser && hasAmount);
   }
 
+  // ADD EVENT LISTENERS
   user.addEventListener('input', checkInputs);
   coinAmt.addEventListener('input', checkInputs);
 
@@ -173,20 +176,59 @@ function setupGiveCoins() {
     const userName = user.value.trim();
     const coinAmount = Number(coinAmt.value);
 
-    const response = await fetch("http://localhost:5000/api/give-user-coins", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        user_name: userName,
-        coin_amount: coinAmount
-      })
-    });
+    try {
+      const response = await fetch("http://localhost:5000/api/give-user-coins", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_name: userName,
+          coin_amount: coinAmount
+        })
+      });
 
-    const data = await response.json();
+      // Parse the server response FIRST
+      const data = await response.json();
 
-    console.log(data);
+      // Handle server errors
+      if (!response.ok) {
+        console.log("FULL SERVER RESPONSE:", data);
+
+        throw new Error(
+          data?.error ||
+          data?.message ||
+          "Failed to give coins"
+        );
+      }
+
+      // Successful response
+      console.log("Give coins response:", data);
+
+      alert(
+        'Successfully gave ' +
+        coinAmount +
+        ' coins to "' +
+        userName +
+        '".'
+      );
+
+      // Optional: clear inputs
+      user.value = "";
+      coinAmt.value = "";
+      button.disabled = true;
+
+    } catch (error) {
+
+      console.error("Give coins error:", error);
+
+      alert(
+        'Failed to give coins to "' +
+        userName +
+        '".\n\n' +
+        (error.message || "An unknown error occurred.")
+      );
+    }
   });
 }

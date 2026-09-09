@@ -323,6 +323,8 @@
   .announcement iframe {
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
   }
   .announcement {
     padding: 0 0 1rem 0;
