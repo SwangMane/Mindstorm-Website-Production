@@ -7,7 +7,6 @@
 // ALL IMPORTS 
 
 import { siteVariables } from './script_variables.js';
-import { fillAccountPage } from './script_accountPage.js';
 
 //-----------------------------------------------------------------//
 
@@ -101,8 +100,9 @@ function clearForms() {
 ///                        ///
 //////////////////////////////
 export async function getUserStatus() {
+
   try {
-    console.log("API BASE:", siteVariables.data_server.ip_address);
+    //console.log("API BASE:", siteVariables.data_server.ip_address);
 
     const response = await fetch(
       `${siteVariables.data_server.ip_address}${siteVariables.data_server.user_status}`,
@@ -110,6 +110,11 @@ export async function getUserStatus() {
         credentials: "include"
       }
     );
+    // IF THE SERVER RESPONDS WITH 401
+    if (response.status === 401) {
+      console.log("User is not logged in");
+      return { logged_in: false };
+    }
 
     if (!response.ok) {
       return {

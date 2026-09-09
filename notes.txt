@@ -36,6 +36,11 @@
 - added game loading screen
 - added a coin give function on the admin page
 
+9/9/2026 - Large backend update
+- updated a lot of JS code  
+- brok out game functions individually
+- fixed the change user role function
+
 
 ---------------- TO DO LIST -----------------
 

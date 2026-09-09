@@ -1,24 +1,52 @@
-/////////////////////////////////////////////////
-///                                           ///
-///             ADMIN PAGE SCRIPT             ///
-///                                           ///
-/////////////////////////////////////////////////
+///////////////////////////////////////////
+///                                     ///
+///             ALL IMPORTS             ///
+///                                     ///
+///////////////////////////////////////////
 
 import { siteVariables } from './script_variables.js';
+import { getSiteUsers } from './script_getSiteUsers.js';
 
-// SETS UP EACH PART OF THE ADMIN PAGE
-export function setupAdminPage() {
+///////////////////////////////////////////
+///                                     ///
+///        ALL LOCAL VARIABLES          ///
+///                                     ///
+///////////////////////////////////////////
+
+let users;
+
+const variables = {
+  // ADMIN PAGE ROLE SELECT
+  role_selector: '#admin_page_roleSelect',
+  // USER SELECTOR
+  user_selector: '#admin_page_roleuserList',
+}
+
+///////////////////////////////////////////
+///                                     ///
+///     SETS UP THE ADMIN FUNCTIONS     ///
+///                                     ///
+///////////////////////////////////////////
+export async function setupAdminPage() {
+
+  // GRAB ALL USERS FROM BACKEND
+  users = await getSiteUsers()
 
   // SETS UP THE DELETE USER FUNCTION
   setupDeleteUser();
-
+  // SETS UP THE USER ROLE FUNCTION
   setupUserRole();
-
+  // SETS UP THE GIVE COINS FUNCTION
   setupGiveCoins();
 
 }
 
-// SETS UP THE DELETE USER FUNCTION
+
+///////////////////////////////////////////
+///                                     ///
+///        DELETE USER FUNCTION         ///
+///                                     ///
+///////////////////////////////////////////
 function setupDeleteUser() {
 
   // DECLARE VARIABLES
@@ -101,52 +129,202 @@ function setupDeleteUser() {
 
 }
 
+
+///////////////////////////////////////////
+///                                     ///
+///         CHANGE USER ROLE            ///
+///                                     ///
+///////////////////////////////////////////
 async function setupUserRole() {
-  const roleSelect = document.querySelector('#admin_page_roleSelect');
+
+  // SETUP CONSTANTS
+  const userSelect = document.querySelector(variables.user_selector);
+  const roleSelect = document.querySelector(variables.role_selector);
+  const saveRoleButton = document.getElementById("save_user_role");
+
+  if (!userSelect) {
+    console.error("User dropdown not found");
+    return;
+  }
 
   if (!roleSelect) {
     console.error("Role dropdown not found");
     return;
   }
 
-  try {
-    const response = await fetch(`${siteVariables.data_server.ip_address}/user-role`,
-      {
-        method: 'GET',
-        credentials: 'include'
-      }
-    );
+  if (!saveRoleButton) {
+    console.error("Save user role button not found");
+    return;
+  }
 
-    let data;
+
+  ///////////////////////////////////////////
+  // CREATE USER DROPDOWN
+  ///////////////////////////////////////////
+
+  let options = false;
+
+  users.forEach(user => {
+
+    const option = document.createElement("option");
+
+    // FIRST OPTION
+    if (!options) {
+
+      option.value = "";
+      option.textContent = "Select user";
+      options = true;
+
+    }
+    // USER OPTIONS
+    else {
+
+      option.value = user;
+      option.textContent = user;
+
+    }
+
+    userSelect.append(option);
+
+  });
+
+
+  // USER CHANGED
+  userSelect.addEventListener("change", async () => {
+
+    const selectedUser = userSelect.value;
+
+    // Reset role and disable save button
+    roleSelect.value = "";
+    saveRoleButton.disabled = true;
+
+    if (!selectedUser) {
+      return;
+    }
 
     try {
-      data = await response.json();
-    } catch {
-      throw new Error("Invalid server response");
-    }
 
-    if (!response.ok) {
-      console.log("FULL SERVER RESPONSE:", data);
-
-      throw new Error(
-        data?.error ||
-        data?.message ||
-        "Failed to get user role"
+      // GET CURRENT ROLE
+      const response = await fetch(
+        `${siteVariables.data_server.ip_address}/user-role?user=${encodeURIComponent(selectedUser)}`,
+        {
+          method: "GET",
+          credentials: "include"
+        }
       );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error || "Failed to get user role"
+        );
+      }
+
+      console.log("Current role:", data.role);
+
+      // SET CURRENT ROLE
+      roleSelect.value = data.role;
+
+      // User has not changed anything yet
+      saveRoleButton.disabled = true;
+
+    } catch (error) {
+
+      console.error("Failed to get user role:", error);
+
+      roleSelect.value = "";
+      saveRoleButton.disabled = true;
+
     }
 
-    //console.log("Current user role:", data.role);
+  });
 
-    // Set dropdown to the user's current role
-    roleSelect.value = data.role;
 
-  } catch (error) {
-    console.error("User role error:", error);
-  }
+  // ROLE CHANGED
+  roleSelect.addEventListener("change", () => {
+
+    const selectedUser = userSelect.value;
+
+    if (!selectedUser) {
+      saveRoleButton.disabled = true;
+      return;
+    }
+
+    // Enable save button
+    saveRoleButton.disabled = false;
+
+  });
+
+  // SAVE ROLE
+  saveRoleButton.addEventListener("click", async () => {
+
+    const selectedUser = userSelect.value;
+    const selectedRole = roleSelect.value;
+
+    if (!selectedUser) {
+      console.error("No user selected");
+      return;
+    }
+
+    if (!selectedRole) {
+      console.error("No role selected");
+      return;
+    }
+
+    // Disable button while saving
+    saveRoleButton.disabled = true;
+
+    try {
+
+      const response = await fetch(
+        `${siteVariables.data_server.ip_address}/change-user-role`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user: selectedUser,
+            role: selectedRole
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error || "Failed to save user role"
+        );
+      }
+
+      console.log("Saved:", data);
+
+      // Keep button disabled after successful save
+      saveRoleButton.disabled = true;
+
+    } catch (error) {
+
+      console.error("Failed to save user role:", error);
+
+      // Allow them to try again
+      saveRoleButton.disabled = false;
+
+    }
+
+  });
+
 }
 
 
-// SETS UP THE GIVE COINS FUNCTION
+
+///////////////////////////////////////////
+///                                     ///
+///     SETS UP GIVE COINS FUNCTION     ///
+///                                     ///
+///////////////////////////////////////////
 function setupGiveCoins() {
 
   // DECLARE VARIABLES

@@ -11,14 +11,16 @@ import { siteVariables } from './script_variables.js';
 
 //-----------------------------------------------------------------//
 
-///////////////////////////////////////////
-///                                     ///
-///        ON ACCOUNT PAGE LOAD         ///
-///                                     ///
-///////////////////////////////////////////
-window.onload = () => {
+fillAccountPage();
 
-  // if were not of the account page exit this
+///////////////////////////////////////////
+///                                     ///
+///      FILL ACCOUNT PAGE DETAILS      ///
+///                                     ///
+///////////////////////////////////////////
+export async function fillAccountPage() {
+
+  // if were not on the account page exit this
   if (!document.querySelector('#account')) return;
 
   // grab the logout button
@@ -36,19 +38,7 @@ window.onload = () => {
 
     }, { once: true });
 
-  }
-
-  // call fill function
-  fillAccountPage()
-};
-
-
-///////////////////////////////////////////
-///                                     ///
-///      FILL ACCOUNT PAGE DETAILS      ///
-///                                     ///
-///////////////////////////////////////////
-export async function fillAccountPage() {
+  }  
 
  try {
 
@@ -100,72 +90,67 @@ export async function fillAccountPage() {
         break;
     }
   }
-
-  // call to fill the users account information
-  function fillPage(account) {
-
-    // store the account being pulled
-    const data = account;
-
-    // profile picture img tag
-    const profile_pic = document.getElementById(siteVariables.account_page.profile_picture);
-    const picture_link = data.user.user_profilePicture;
-    profile_pic.src = picture_link;
-
-    // username stuff
-    const account_username = document.getElementById(siteVariables.account_page.minecraft_username);
-    const username = data.user.user_name;
-    account_username.textContent = username;
-
-    // user join date stuff
-    const account_joinDate = document.getElementById(siteVariables.account_page.user_joinDate);
-    const joindate = data.user.user_joinDate;
-    account_joinDate.textContent = joindate;
-
-    // user server coins stuff
-    const account_serverCoins = document.getElementById(siteVariables.account_page.user_serverCoins);
-    const serverCoins = data.user.user_serverPoints;
-    account_serverCoins.textContent = serverCoins;
-
-    // user role
-    const account_role = document.getElementById(siteVariables.account_page.user_role);
-    const serverRole = data.user.user_role;
-    account_role.textContent = serverRole;
-
-    // user playstyle
-    const user_playstyle = document.getElementById(siteVariables.account_page.user_playstyle);
-    const currentPlaystyle = data.user.user_playstyle;
-
-    // save button on account page
-    const saveButton = document.getElementById(siteVariables.account_page.user_saveChanges);
-
-
-    // if the user previously selected a playstyle - display it
-    if (currentPlaystyle) user_playstyle.value = currentPlaystyle;
-
-    // listen for changes on the playstyle dropdown
-    user_playstyle.addEventListener("change", () => {
-
-      // grab the selected playstyle from the dropdown - the value
-      const selectedPlaystyle = user_playstyle.value;
-
-      // enable the save button on changes
-      saveButton.disabled = false;
-      saveButton.removeEventListener('click', () => {})
-
-      saveButton.addEventListener('click', () => {
-
-        // save the profile with given info - disable save button
-        saveProfile(selectedPlaystyle);
-        saveButton.disabled = true;
-
-      }, {once: true});
-
-    });
-      
-  }
-
 }
+
+// call to fill the users account information
+function fillPage(account) {
+
+  // profile picture img tag
+  const profile_pic = document.getElementById(siteVariables.account_page.profile_picture);
+  const picture_link = account.user.user_profilePicture;
+  profile_pic.src = picture_link;
+
+  // username stuff
+  const account_username = document.getElementById(siteVariables.account_page.minecraft_username);
+  const username = account.user.user_name;
+  account_username.textContent = username;
+
+  // user join date stuff
+  const account_joinDate = document.getElementById(siteVariables.account_page.user_joinDate);
+  const joindate = account.user.user_joinDate;
+  account_joinDate.textContent = joindate;
+
+  // user server coins stuff
+  const account_serverCoins = document.getElementById(siteVariables.account_page.user_serverCoins);
+  const serverCoins = account.user.user_serverPoints;
+  account_serverCoins.textContent = serverCoins;
+
+  // user role
+  const account_role = document.getElementById(siteVariables.account_page.user_role);
+  const serverRole = account.user.user_role;
+  account_role.textContent = serverRole;
+
+  // user playstyle
+  const user_playstyle = document.getElementById(siteVariables.account_page.user_playstyle);
+  const currentPlaystyle = account.user.user_playstyle;
+
+  // save button on account page
+  const saveButton = document.getElementById(siteVariables.account_page.user_saveChanges);
+
+
+  // if the user previously selected a playstyle - display it
+  if (currentPlaystyle) user_playstyle.value = currentPlaystyle;
+
+  // listen for changes on the playstyle dropdown
+  user_playstyle.addEventListener("change", () => {
+
+    // grab the selected playstyle from the dropdown - the value
+    const selectedPlaystyle = user_playstyle.value;
+
+    // enable the save button on changes
+    saveButton.disabled = false;
+    saveButton.removeEventListener('click', () => {})
+
+    saveButton.addEventListener('click', () => {
+
+      // save the profile with given info - disable save button
+      saveProfile(selectedPlaystyle);
+      saveButton.disabled = true;
+
+    }, {once: true});
+
+  });
+}    
 
 ///////////////////////////////////////////
 ///                                     ///

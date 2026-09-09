@@ -6,7 +6,8 @@
 
 // ALL IMPORTS 
 
-import { siteImages, prevSeasonsList, siteVariables } from './script_variables.js';
+import { prevSeasonsList, siteVariables } from './script_variables.js';
+import { getSiteUsers } from './script_getSiteUsers.js'
 
 //-----------------------------------------------------------------//
 
@@ -14,7 +15,7 @@ import { siteImages, prevSeasonsList, siteVariables } from './script_variables.j
 export async function createSeasons() {
 
   // GRAB THE ENTIRE LIST OF PLAYERS 
-  const currPlayersList = await getUsernames();
+  const currPlayersList = await getSiteUsers();
 
   // GRAB THE DIV FOR THE PLAYERS
   const currPlayersListDiv = document.getElementById(siteVariables.seasons_page.current_season_members);
@@ -291,23 +292,4 @@ function openSeason(name) {
     }
 
   });
-}
-
-async function getUsernames() {
-    try {
-        const response = await fetch(
-            `${siteVariables.data_server.ip_address + siteVariables.seasons_page.usersFetch}`,  
-            {
-                credentials: 'include'
-            }
-        );
-
-        const data = await response.json();
-
-        return data;
-    }
-    catch (error) {
-        console.error(error);
-        return [];
-    }
 }

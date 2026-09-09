@@ -29,6 +29,7 @@ import { getUserStatus } from './script_login.js';
 ///         ALL SITE VARIABLES          ///
 ///                                     ///
 ///////////////////////////////////////////
+
 export const siteVariables = {
 
     // amount of time per refresh on the background
@@ -279,14 +280,13 @@ export const siteImages = {
     ],
 };
 
+export const userData = await getUserStatus();
 
 ///////////////////////////////////////////
 ///                                     ///
 ///       ALL ITEMS USED IN NAVBAR      ///
 ///                                     ///
 ///////////////////////////////////////////
-const userData = await getUserStatus();
-
 export const navBarItems = {
 
     // all individual site pages | priority number

@@ -193,6 +193,7 @@ def delete_user(user_name):
 # -------------------------
 @views.route("/api/change-user-role", methods=["POST"])
 def change_user_role():
+
     if not current_user.is_authenticated:
         return jsonify({
             "error": "Unauthorized"
@@ -200,21 +201,47 @@ def change_user_role():
 
     data = request.get_json()
 
+    #print("CHANGE ROLE DATA:", data)
+
+    username = data.get("user")
     role = data.get("role")
 
-    if role is None:
+    if not username:
+        return jsonify({
+            "error": "Missing user"
+        }), 400
+
+    if not role:
         return jsonify({
             "error": "Missing role"
         }), 400
 
-    current_user.user_role = role
+    # Find selected user
+    user = User.query.filter_by(user_name=username).first()
+
+    print("FOUND USER:", user)
+
+    if user is None:
+        return jsonify({
+            "error": "User not found"
+        }), 404
+
+    #print("OLD ROLE:", user.user_role)
+    #print("NEW ROLE:", role)
+
+    # Change role
+    user.user_role = role
 
     db.session.commit()
 
+    print("ROLE SAVED:", user.user_role)
+
     return jsonify({
         "success": True,
-        "role": current_user.user_role
+        "user": user.user_name,
+        "role": user.user_role
     }), 200
+
 
 # -------------------------
 #
@@ -223,14 +250,38 @@ def change_user_role():
 # -------------------------
 @views.route("/api/user-role", methods=["GET"])
 def get_user_role():
+
     if not current_user.is_authenticated:
         return jsonify({
             "error": "Unauthorized"
         }), 401
 
+    username = request.args.get("user")
+
+    print("REQUESTED USER:", username)
+
+    if not username:
+        return jsonify({
+            "error": "Missing user"
+        }), 400
+
+    user = User.query.filter_by(user_name=username).first()
+
+    print("FOUND USER:", user)
+
+    if user is None:
+        return jsonify({
+            "error": "User not found"
+        }), 404
+
+    print("USER NAME:", user.user_name)
+    print("USER ROLE:", user.user_role)
+
     return jsonify({
-        "role": current_user.user_role
+        "user": user.user_name,
+        "role": user.user_role
     }), 200
+
 
 
 # -------------------------

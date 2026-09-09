@@ -6,8 +6,7 @@
 
 // ALL IMPORTS 
 
-import { siteIcons, siteVariables, navBarItems } from './script_variables.js';
-import { getUserStatus } from './script_login.js';
+import { siteIcons, siteVariables, navBarItems, userData } from './script_variables.js';
 
 //-----------------------------------------------------------------//
 
@@ -19,7 +18,7 @@ export async function fillNavbar(page) {
   console.log('Currently viewing: ' + page);
 
   // grab the users login status 
-  const userData = await getUserStatus();
+  const user_data = userData;
 
   // grab the nav element on the current page
   const nav = document.querySelector('nav');
@@ -55,8 +54,8 @@ export async function fillNavbar(page) {
         if (key === "login") {
           processedItem = {
             ...item,
-            title: userData?.logged_in
-              ? userData.user
+            title: user_data?.logged_in
+              ? user_data.user
               : "Login"
           };
         }
@@ -67,7 +66,7 @@ export async function fillNavbar(page) {
             ...item,
             displayed: siteVariables.minecraft_server.special_players.owners.some(
               owner =>
-                userData?.user?.toLowerCase() === owner.toLowerCase()
+                user_data?.user?.toLowerCase() === owner.toLowerCase()
             )
           };
         }

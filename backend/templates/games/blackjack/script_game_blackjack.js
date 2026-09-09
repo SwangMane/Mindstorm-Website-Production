@@ -1,16 +1,19 @@
-/////////////////////////////////////////////////
-///                                           ///
-///           BLACKJACK GAME SCRIPT           ///
-///                                           ///
-/////////////////////////////////////////////////
+///////////////////////////////////////////
+///                                     ///
+///             ALL IMPORTS             ///
+///                                     ///
+///////////////////////////////////////////
 
-// ALL IMPORTS 
+import { games_list } from '../script_variables.js';
+import { gameIntro } from '../functions/script_intro.js';
+import { loadGamesAccount } from '../functions/script_getUserInfo.js';
 
-import { closeMiniGame, gameIntro, loadGamesAccount, games_list } from './script_minigames.js';
+///////////////////////////////////////////
+///                                     ///
+///        ALL LOCAL VARIABLES          ///
+///                                     ///
+///////////////////////////////////////////
 
-//-----------------------------------------------------------------//
-
-// all blackjack variables
 const variables = {
 
   // THE GAME WRAPPER
@@ -28,12 +31,10 @@ const variables = {
       // WRAPPER FOR THE GAME OPTIONS
       option_wrap: 'option_wrapper',
 
-
     }
 
   },
-
-  // all buttons 
+  // ALL BUTTONS 
   buttons: {
 
     // button to close the game
@@ -43,8 +44,12 @@ const variables = {
 
 }
 
-// LOADS THE BLACKJACK GAME
-export async function loadBlackjack(game) {
+/////////////////////////////////////////////////
+///                                           ///
+///           BLACKJACK GAME SCRIPT           ///
+///                                           ///
+/////////////////////////////////////////////////
+export async function blackjack(game) {
 
   // GRAB THE CURRENT USERS DATA AND STORE IT
   const [pictureLink, username, serverCoins] = await loadGamesAccount();
@@ -140,9 +145,5 @@ async function mainMenu() {
 
 
 };
-
-function createButton(name, fnct, enabled=false) {
-  
-}
 
 

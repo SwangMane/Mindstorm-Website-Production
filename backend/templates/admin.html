@@ -102,13 +102,14 @@
         <div class="flexed grayer_gradient_bcg column">
           <label for="delete_user_input">Change your server role (Warning --- This could lock you out of certain features)</label>
           <div class="flexed grayer_gradient_bcg">
+            <select id="admin_page_roleuserList"></select>
             <select id="admin_page_roleSelect" class="flexed fira-sans-bold">
-              <option value="Default" selected disabled>Select your Role</option>
+              <option value="Default" selected disabled>Select Role</option>
               <option value="Standard User">Standard user</option>
               <option value="Moderator">Moderator</option>
               <option value="Owner">Owner</option>
             </select>
-            <button id="save_user_role">Save Role</button>
+            <button id="save_user_role" disabled>Save Role</button>
           </div>
         </div>
 

@@ -168,7 +168,6 @@ export async function fillMinecraftServerStats(page) {
 // check if the user is logged in
 // if the player is, show them the server IP
 async function getServerIp() {
-
     try {
         const response = await fetch(
             `${siteVariables.data_server.ip_address}/userinfo`,
@@ -177,6 +176,11 @@ async function getServerIp() {
                 credentials: 'include',
             }
         );
+
+        if (response.status === 401) {
+            //console.log("User is not logged in");
+            return `<p class="server_status_item">Server IP: Login to view IP</p>`;
+        }
 
         const data = await response.json();
 
