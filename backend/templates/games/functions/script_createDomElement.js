@@ -61,7 +61,7 @@ export function createButton(disabled, visible, text, classes, IDname, listener)
 ///           INPUT CREATION SCRIPT           ///
 ///                                           ///
 /////////////////////////////////////////////////
-export function createInput(disabled, visible, type, text, classes, IDname, listener) {
+export function createInput(disabled, visible, type, mode, text, defaultvalue, classes, IDname, listener) {
 
   // CREATE THE INPUT ELEMENT
   const input = document.createElement('input');
@@ -76,8 +76,14 @@ export function createInput(disabled, visible, type, text, classes, IDname, list
   // THE TYPE OF INPUT
   if (type) input.type = type;
 
+  // THE INPUT MODE TYPE
+  if (mode) input.inputMode = mode;
+
   // IF TEXT IS WANTED
   if (text) input.placeholder = text;
+
+  // IF THERE IS TO BE A DEFAULT VALUE
+  if (defaultvalue) input.value = defaultvalue;
 
   // IF THE INPUT HAS CLASSES
   if (classes) input.classList = classes;

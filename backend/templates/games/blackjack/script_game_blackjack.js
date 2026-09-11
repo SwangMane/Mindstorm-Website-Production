@@ -54,12 +54,25 @@ const variables = {
     // THE SPLIT BUTTON
     move_split: 'move_split_btn',
 
+    // DOUBLE DOWN BUTTON
     move_dbl_down: 'move_dbl_down_btn',
+
+    // BET UP BUTTON
+    bet_up: 'bet_up_btn',
+
+    // BET DOWN BUTTON
+    bet_down: 'bet_down_btn',
 
     // ALL THE ACTION BUTTONS
     action_buttons: 'action_buttons',
 
   },
+  inputs: {
+
+    // BET AMOUNT
+    bet_amount: 'bet_amount_input',
+
+  }
 
 }
 
@@ -141,17 +154,20 @@ async function mainMenu(account, images) {
   start_wrap = document.createElement('div');
   start_wrap.classList = variables.menus.mainMenu.start_wrap;
 
-  // THE DEAL HAND BUTTON
-  deal_hand = createButton(false, true, 'Deal Hand', variables.buttons.action_buttons, variables.buttons.deal_hand, false);
-  bet_amt = createInput(false, true, 'number', 'Enter bet amount', null, null, null);
+  // THE START MOVES
+  bet_amt = createInput(false, true, 'number', 'numeric', 'Enter bet amount', 0, null, variables.inputs.bet_amount, initialBet(bet_amt, bet_amt, account));
+  bet_down = createButton(false, true, 'Decrease Bet', variables.buttons.action_buttons, variables.buttons.bet_down, () => initialBet(bet_down, bet_amt, account));
+  bet_up = createButton(false, true, 'Increase Bet', variables.buttons.action_buttons, variables.buttons.bet_up, () => initialBet(bet_up, bet_amt, account));
 
-  start_wrap.append(deal_hand, bet_amt);
+  // APPEND ALL ITEMS TO THE START WRAPPER
+  start_wrap.append(bet_down, bet_amt, bet_up);
 
   // CREATE THE MOVE WRAP
   move_wrap = document.createElement('div');
   move_wrap.classList = variables.menus.mainMenu.move_wrap;
 
   // THE ALTERNATE MOVE BUTTONS
+  deal_hand = createButton(false, true, 'Deal Hand', variables.buttons.action_buttons, variables.buttons.deal_hand, () => dealHand());
   move_hit = createButton(false, false, 'Hit',  variables.buttons.action_buttons, variables.buttons.move_hit, false);
   move_split = createButton(true, false, 'Split Hand', variables.buttons.action_buttons, variables.buttons.move_split, false);
   move_dbl_down = createButton(true, false, 'Double Down', variables.buttons.action_buttons, variables.buttons.move_dbl_down, false);
@@ -162,9 +178,37 @@ async function mainMenu(account, images) {
   // APPEND ALL ELEMENTS
   game_wrapper.append(user_wrap, start_wrap, move_wrap);
 
-
-
-
 };
+
+///////////////////////////////////////////
+///                                     ///
+///      BLACKJACK BET AMT BUTTONS      ///
+///                                     ///
+///////////////////////////////////////////
+function initialBet(button, input, account) {
+
+  // THE BET DOWN BUTTON
+  if (button.id === variables.buttons.bet_down) {
+
+    if (!input || input.value <= 0) return;
+    else input.value--;
+
+  }
+  // THE BET UP BUTTON
+  if (button.id === variables.buttons.bet_up) {
+
+    if (!input || input.value >= account.serverCoins) return;
+    else input.value++;
+
+  }
+
+  // THE DEAL HAND BUTTON
+  if (button.id === variables.buttons.deal_hand) {
+
+
+    
+  }
+
+}
 
 
