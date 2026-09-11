@@ -6,7 +6,9 @@
 
 import { games_list } from '../script_variables.js';
 import { gameIntro } from '../functions/script_intro.js';
-import { loadGamesAccount } from '../functions/script_getUserInfo.js';
+import { getUserInfo } from '../functions/script_getUserInfo.js';
+import { preloadImages } from '../functions/script_imageArray.js';
+import { createButton, createInput } from '../functions/script_createDomElement.js';
 
 ///////////////////////////////////////////
 ///                                     ///
@@ -28,8 +30,11 @@ const variables = {
       // WRAPPER FOR PLAYER STATS
       player_wrap: 'player_wrapper',
 
+      // WRAPPER FOR THE STARTING STUFF
+      start_wrap: 'start_wrapper',
+
       // WRAPPER FOR THE GAME OPTIONS
-      option_wrap: 'option_wrapper',
+      move_wrap: 'move_wrapper',
 
     }
 
@@ -40,6 +45,20 @@ const variables = {
     // button to close the game
     close_game: 'close_minigame_button',
 
+    // THE DEAL HAND / START GAME BUTTON
+    deal_hand: 'deal_hand_btn',
+    
+    // THE HIT BUTTON
+    move_hit: 'move_hit_btn',
+
+    // THE SPLIT BUTTON
+    move_split: 'move_split_btn',
+
+    move_dbl_down: 'move_dbl_down_btn',
+
+    // ALL THE ACTION BUTTONS
+    action_buttons: 'action_buttons',
+
   },
 
 }
@@ -49,39 +68,25 @@ const variables = {
 ///           BLACKJACK GAME SCRIPT           ///
 ///                                           ///
 /////////////////////////////////////////////////
-export async function blackjack(game) {
-
-  // GRAB THE CURRENT USERS DATA AND STORE IT
-  const [pictureLink, username, serverCoins] = await loadGamesAccount();
-
-  // CURRENT USERS DATA
-  const account_picture = pictureLink;
-  const current_user = username;
-  const current_coins = serverCoins;
-
-  // IF ANY OF THESE ITEMS RETURNED UNDEFINED EXIT THE GAME
-  if (!account_picture || !current_user || current_coins === null) {
-
-    // CALL THE FAIL GAME LOAD
-    failedGameLoad(game.title);
-    return;
-  }
-
-  // LOG THE USERS INFO
-  console.log('Account fetch for user ' + current_user + ' successful | ' + game.title);
+export async function blackjack(game, account) {
 
   // START THE GAME INTRO
   await gameIntro(game.title);
 
+  // IF THE USER LEAVES BEFORE INTO IS DONE
   if (!games_list.current_game) return;
 
-  console.log('starting game | ' + game.title);
+  // LOAD THE GAME IMAGES INTO LOCAL STORAGE
+  let cards = [
+    "1OR11.gif", "2.gif", "3.gif", "4.gif", "5.gif", "6.gif", "7.gif", "8.gif", "9.gif", "10.gif", "10JACK.gif", "10QUEEN.gif", "10KING.gif"
+  ]
 
-  // log the current game being played
-  const currGame = game;
+  cards = cards.map(item => `images/games/blackjack/${item}`);
+
+  preloadImages(cards, "Playing cards", cards.length);
 
   // INITIAL MAIN MENU LOAD
-  mainMenu();
+  mainMenu(account, cards);
 
 }
 
@@ -90,9 +95,7 @@ export async function blackjack(game) {
 ///     BLACKJACK MAIN MENU FUNCTION    ///
 ///                                     ///
 ///////////////////////////////////////////
-async function mainMenu() {
-
-  const [pictureLink, username, serverCoins] = await loadGamesAccount();
+async function mainMenu(account, images) {
 
   // STORE THE GAME WRAPPER
   const game_wrapper = document.getElementById(variables.game_wrapper);
@@ -108,15 +111,15 @@ async function mainMenu() {
 
   // USERNAME TEXT
   user_name = document.createElement('p');
-  user_name.textContent = username;
+  user_name.textContent = account.username;
 
   // USER ICON IMAGE
   user_image = document.createElement('img');
-  user_image.src = pictureLink;
+  user_image.src = account.pictureLink;
 
   // USER COINS
   user_coins = document.createElement('p');
-  user_coins.textContent = 'Server Coins: ' + serverCoins;
+  user_coins.textContent = 'Server Coins: ' + account.serverCoins;
 
   // USER WRAPPER
   user_wrap = document.createElement('div');
@@ -124,22 +127,40 @@ async function mainMenu() {
   user_wrap.append(user_name, user_coins, user_image);
 
   // MENU OPTIONS VARIABLES
-  let option_wrap;
+  let start_wrap;
+  let move_wrap;
   let deal_hand;
-  let move_check;
+  let move_hit;
   let move_split;
+  let move_dbl_down;
   let bet_amt;
   let bet_up;
   let bet_down;
 
+  // CREATE THE START WRAP
+  start_wrap = document.createElement('div');
+  start_wrap.classList = variables.menus.mainMenu.start_wrap;
 
-  option_wrap = document.createElement('div');
-  option_wrap.classList = variables.menus.mainMenu.option_wrap;
+  // THE DEAL HAND BUTTON
+  deal_hand = createButton(false, true, 'Deal Hand', variables.buttons.action_buttons, variables.buttons.deal_hand, false);
+  bet_amt = createInput(false, true, 'number', 'Enter bet amount', null, null, null);
 
+  start_wrap.append(deal_hand, bet_amt);
 
+  // CREATE THE MOVE WRAP
+  move_wrap = document.createElement('div');
+  move_wrap.classList = variables.menus.mainMenu.move_wrap;
+
+  // THE ALTERNATE MOVE BUTTONS
+  move_hit = createButton(false, false, 'Hit',  variables.buttons.action_buttons, variables.buttons.move_hit, false);
+  move_split = createButton(true, false, 'Split Hand', variables.buttons.action_buttons, variables.buttons.move_split, false);
+  move_dbl_down = createButton(true, false, 'Double Down', variables.buttons.action_buttons, variables.buttons.move_dbl_down, false);
+
+  // APPEND THE BUTTONS TO THE WRAPPER
+  move_wrap.append(deal_hand, move_hit, move_split, move_dbl_down);
 
   // APPEND ALL ELEMENTS
-  game_wrapper.append(user_wrap, option_wrap);
+  game_wrapper.append(user_wrap, start_wrap, move_wrap);
 
 
 

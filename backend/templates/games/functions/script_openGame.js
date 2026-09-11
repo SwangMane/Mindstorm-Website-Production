@@ -7,6 +7,8 @@
 import { games_list } from '../script_variables.js';
 import { blackjack } from '../blackjack/script_game_blackjack.js';
 import { closeMiniGame } from './script_closeGame.js';
+import { getUserInfo } from './script_getUserInfo.js';
+import { createButton } from './script_createDomElement.js';
 
 ///////////////////////////////////////////
 ///                                     ///
@@ -19,42 +21,35 @@ import { closeMiniGame } from './script_closeGame.js';
 ///    OPENS THE SELECTED MINI GAME     ///
 ///                                     ///
 ///////////////////////////////////////////
-//
-//
-//
-export function openMiniGame(game) {
+export async function openMiniGame(game) {
+
+  // GRAB THE CURRENT USERS DATA AND STORE IT
+  const account = await getUserInfo();
+
+  // IF ANY OF THESE ITEMS RETURNED UNDEFINED EXIT THE GAME
+  if (!account.pictureLink || !account.username || account.serverCoins === null || undefined) {
+
+    // CALL THE FAIL GAME LOAD
+    failedGameLoad(game.title);
+    return;
+  }
 
   // store the current game being opened
-  const currGame = game;
   games_list.current_game = game;
   // the games popout wrapper
   const game_popout_wrapper = document.getElementById(games_list.game_popout_wrapper);
 
-  let closeBtn;
-
-  closeBtn = document.createElement('button');
-  closeBtn.id = games_list.game_popout_closebtn;
-  closeBtn.textContent = 'X';
+  // CREATE THE CLOSE BUTTON
+  const closeBtn = createButton(false, true, 'X', null, games_list.game_popout_closebtn, () => closeMiniGame(game.title))
   game_popout_wrapper.append(closeBtn);
 
-  //<button id="close_minigame_button" type="button">X</button>
-
-  // display the wrapper
+  // DISPLAY THE GAME POPOUT WRAPPER
   game_popout_wrapper.style.display = 'block';
 
-  closeBtn.addEventListener('click', () => {
+  // BLACKJACK
+  if (game.title === "Blackjack") {
 
-    closeMiniGame(game.title);
-
-  }, {once: true})
-
-
-  console.log('Opening game | ' + game.title);
-
-
-  if (currGame.title === "Blackjack") {
-
-    blackjack(currGame);
+    blackjack(game, account);
 
   }
 

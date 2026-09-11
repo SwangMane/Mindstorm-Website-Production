@@ -5,6 +5,7 @@
 ///////////////////////////////////////////
 
 import { siteVariables } from '../../script_variables.js';
+import { failedGameLoad } from './script_gameLoadFailed.js';
 
 ///////////////////////////////////////////
 ///                                     ///
@@ -17,7 +18,7 @@ import { siteVariables } from '../../script_variables.js';
 ///   GRAB THE CURRENT USERS ACC INFO   ///
 ///                                     ///
 ///////////////////////////////////////////
-export async function loadGamesAccount() {
+export async function getUserInfo() {
 
   try {
 
@@ -57,11 +58,18 @@ export async function loadGamesAccount() {
     }
 
     // USERS INFO TO PASS TO THE GAME LOADER
+    const account = {
+      pictureLink: data.user.user_profilePicture,
+      username: data.user.user_name,
+      serverCoins: data.user.user_serverPoints,
+    }
+    /*
     const picture_link = data.user.user_profilePicture;
     const username = data.user.user_name;
     const serverCoins = data.user.user_serverPoints;
+    */
 
-    return [picture_link, username, serverCoins];
+    return account;
 
   // ERROR CATCHER
   } catch (error) {

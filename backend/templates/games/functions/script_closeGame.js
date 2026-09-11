@@ -22,8 +22,7 @@ import { games_list } from '../script_variables.js';
 //
 export function closeMiniGame(title) {
 
-  console.log('Closing game | ' + title);
-
+  // DE-SET THE CURRENT GAME
   games_list.current_game = null;
 
   // MINI GAME WRAPPER;
@@ -31,9 +30,10 @@ export function closeMiniGame(title) {
   const game_wrapper = document.getElementById(games_list.game_wrapper);
   const close_game_btn = document.getElementById('close_minigame_button');
 
+  // REMOVE THE BUTTON FROM THE PAGE
   close_game_btn.remove();
 
-  // clear the game wrapper
+  // CLEAR THE GAME WRAPPER FOR NEXT USE
   game_wrapper.innerHTML = '';
 
   // HIDE THE MINI GAME WRAPPER

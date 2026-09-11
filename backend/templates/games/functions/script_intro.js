@@ -59,7 +59,7 @@ export async function gameIntro(title) {
   );
 
   // LOAD ALL INTRO IMAGES TO THE USER
-  await preloadImages(images, "intro", images.length);
+  await preloadImages(images, "intro frames", images.length);
 
   // CREATE IMAGE AND ASSIGN ITS TAGS
   img = document.createElement('img');

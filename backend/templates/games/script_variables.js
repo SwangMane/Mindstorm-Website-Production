@@ -76,7 +76,7 @@ export const games_list = {
       // LINK TO THE GAME PAGE
       link: 'games_budderBlock.html',
       // IF THE GAME IS PLAYABLE
-      playable: false,
+      playable: true,
       // IF THE GAME REQUIRES A CANVAS
       needCanvas: true,
     }
