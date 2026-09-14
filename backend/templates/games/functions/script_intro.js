@@ -41,7 +41,9 @@ const intro_variables = {
 //  # RUNS THE GAME INTRO ANIMATION AND 
 //  # TAKES THE CURRENT GAME (GAME) INTO ACCOUNT
 //
-export async function gameIntro(title) {
+export async function gameIntro(title, skip) {
+
+  if (skip) return;
 
   // CONSOLE LOG
   console.log('starting game intro | ' + title);

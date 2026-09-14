@@ -157,11 +157,7 @@ async function setupUserRole() {
     return;
   }
 
-
-  ///////////////////////////////////////////
   // CREATE USER DROPDOWN
-  ///////////////////////////////////////////
-
   let options = false;
 
   users.forEach(user => {

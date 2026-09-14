@@ -41,6 +41,9 @@
 - brok out game functions individually
 - fixed the change user role function
 
+9/13/2026 - General update
+- made a skip intro feature for admins in minigames
+
 
 ---------------- TO DO LIST -----------------
 

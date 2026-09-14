@@ -6,9 +6,10 @@
 
 import { games_list } from '../script_variables.js';
 import { gameIntro } from '../functions/script_intro.js';
-import { getUserInfo } from '../functions/script_getUserInfo.js';
 import { preloadImages } from '../functions/script_imageArray.js';
-import { createButton, createInput } from '../functions/script_createDomElement.js';
+import { createButton, createImage, createInput } from '../functions/script_createDomElement.js';
+import { hideShowDomObj } from '../functions/script_hideShowDomElement.js';
+import { randNum } from '../functions/script_randomNumber.js';
 
 ///////////////////////////////////////////
 ///                                     ///
@@ -17,6 +18,9 @@ import { createButton, createInput } from '../functions/script_createDomElement.
 ///////////////////////////////////////////
 
 const variables = {
+
+  // TO SKIP THE INTRO 
+  intro_skip: true,
 
   // THE GAME WRAPPER
   game_wrapper: 'game_wrapper',
@@ -36,8 +40,9 @@ const variables = {
       // WRAPPER FOR THE GAME OPTIONS
       move_wrap: 'move_wrapper',
 
-    }
-
+    },
+    // THE WRAPPER TO THE CARDS
+    cardWrap: 'card_wrapper',
   },
   // ALL BUTTONS 
   buttons: {
@@ -76,6 +81,53 @@ const variables = {
 
 }
 
+// STORE THE CURRENT ACCOUNT
+let currAccount;
+
+// STORE THE GAME WRAPPER
+const game_wrapper = document.getElementById(variables.game_wrapper);
+
+// USER WRAP VARIABLES
+let user_wrap;
+let user_name;
+let user_image;
+let user_coins;
+
+// MENU OPTIONS VARIABLES
+let start_wrap;
+let move_wrap;
+let deal_hand;
+let move_hit;
+let move_split;
+let move_dbl_down;
+let bet_amt;
+let bet_up;
+let bet_down;
+
+// STORE GAME CHAR VARIABLES
+let player_cards;
+let dealer_cards;
+let dealer_card_wrap;
+let player_card_wrap;
+let card_wrap;
+
+// GAME CARD VARIABLES (2 DECKS OF 52 CARDS = 104)
+let card_count = {
+  1: 8,
+  2: 8,
+  3: 8,
+  4: 8,
+  5: 8,
+  6: 8,
+  7: 8,
+  8: 8,
+  9: 8,
+  10: 8,
+  11: 8,
+  12: 8,
+  13: 8,
+};
+
 /////////////////////////////////////////////////
 ///                                           ///
 ///           BLACKJACK GAME SCRIPT           ///
@@ -83,23 +135,21 @@ const variables = {
 /////////////////////////////////////////////////
 export async function blackjack(game, account) {
 
+  // SET THE ACCOUNT;
+  currAccount = account
+
   // START THE GAME INTRO
-  await gameIntro(game.title);
+  await gameIntro(game.title, variables.intro_skip);
 
   // IF THE USER LEAVES BEFORE INTO IS DONE
   if (!games_list.current_game) return;
 
-  // LOAD THE GAME IMAGES INTO LOCAL STORAGE
-  let cards = [
-    "1OR11.gif", "2.gif", "3.gif", "4.gif", "5.gif", "6.gif", "7.gif", "8.gif", "9.gif", "10.gif", "10JACK.gif", "10QUEEN.gif", "10KING.gif"
-  ]
+  //cards = cards.map(item => `images/games/blackjack/${item}`);
 
-  cards = cards.map(item => `images/games/blackjack/${item}`);
-
-  preloadImages(cards, "Playing cards", cards.length);
+  //preloadImages(cards, "Playing cards", cards.length);
 
   // INITIAL MAIN MENU LOAD
-  mainMenu(account, cards);
+  mainMenu(account);
 
 }
 
@@ -108,75 +158,58 @@ export async function blackjack(game, account) {
 ///     BLACKJACK MAIN MENU FUNCTION    ///
 ///                                     ///
 ///////////////////////////////////////////
-async function mainMenu(account, images) {
-
-  // STORE THE GAME WRAPPER
-  const game_wrapper = document.getElementById(variables.game_wrapper);
+async function mainMenu(account) {
 
   // CLEAR THE WRAPPER
   game_wrapper.innerHTML = '';
 
-  // USER WRAP VARIABLES
-  let user_wrap;
-  let user_name;
-  let user_image;
-  let user_coins;
-
   // USERNAME TEXT
   user_name = document.createElement('p');
   user_name.textContent = account.username;
-
   // USER ICON IMAGE
   user_image = document.createElement('img');
   user_image.src = account.pictureLink;
-
   // USER COINS
   user_coins = document.createElement('p');
   user_coins.textContent = 'Server Coins: ' + account.serverCoins;
-
   // USER WRAPPER
   user_wrap = document.createElement('div');
   user_wrap.classList = variables.menus.mainMenu.player_wrap;
   user_wrap.append(user_name, user_coins, user_image);
 
-  // MENU OPTIONS VARIABLES
-  let start_wrap;
-  let move_wrap;
-  let deal_hand;
-  let move_hit;
-  let move_split;
-  let move_dbl_down;
-  let bet_amt;
-  let bet_up;
-  let bet_down;
-
   // CREATE THE START WRAP
   start_wrap = document.createElement('div');
   start_wrap.classList = variables.menus.mainMenu.start_wrap;
-
   // THE START MOVES
-  bet_amt = createInput(false, true, 'number', 'numeric', 'Enter bet amount', 0, null, variables.inputs.bet_amount, initialBet(bet_amt, bet_amt, account));
+  bet_amt = createInput(false, true, 'number', 'numeric', 'Enter bet amount', 0, null, variables.inputs.bet_amount.value, null);
   bet_down = createButton(false, true, 'Decrease Bet', variables.buttons.action_buttons, variables.buttons.bet_down, () => initialBet(bet_down, bet_amt, account));
   bet_up = createButton(false, true, 'Increase Bet', variables.buttons.action_buttons, variables.buttons.bet_up, () => initialBet(bet_up, bet_amt, account));
-
   // APPEND ALL ITEMS TO THE START WRAPPER
   start_wrap.append(bet_down, bet_amt, bet_up);
 
   // CREATE THE MOVE WRAP
   move_wrap = document.createElement('div');
   move_wrap.classList = variables.menus.mainMenu.move_wrap;
-
   // THE ALTERNATE MOVE BUTTONS
-  deal_hand = createButton(false, true, 'Deal Hand', variables.buttons.action_buttons, variables.buttons.deal_hand, () => dealHand());
-  move_hit = createButton(false, false, 'Hit',  variables.buttons.action_buttons, variables.buttons.move_hit, false);
+  deal_hand = createButton(false, true, 'Deal Hand', variables.buttons.action_buttons, variables.buttons.deal_hand, () => dealHand(bet_amt.value, account));
+  move_hit = createButton(true, false, 'Hit',  variables.buttons.action_buttons, variables.buttons.move_hit, false);
   move_split = createButton(true, false, 'Split Hand', variables.buttons.action_buttons, variables.buttons.move_split, false);
   move_dbl_down = createButton(true, false, 'Double Down', variables.buttons.action_buttons, variables.buttons.move_dbl_down, false);
-
   // APPEND THE BUTTONS TO THE WRAPPER
   move_wrap.append(deal_hand, move_hit, move_split, move_dbl_down);
 
+  // CREATE THE CARD WRAPPER
+  card_wrap = document.createElement('div');
+  card_wrap.classList = variables.menus.cardWrap;
+  card_wrap.style.display = 'none';
+  // CREATE THE INNER CARD WRAPS
+  dealer_card_wrap = document.createElement('div');
+  player_card_wrap = document.createElement('div');
+  // APPEND THE INNER WRAPS TO THE OUTTER
+  card_wrap.append(dealer_card_wrap, player_card_wrap);
+
   // APPEND ALL ELEMENTS
-  game_wrapper.append(user_wrap, start_wrap, move_wrap);
+  game_wrapper.append(user_wrap, start_wrap, move_wrap, card_wrap);
 
 };
 
@@ -186,6 +219,8 @@ async function mainMenu(account, images) {
 ///                                     ///
 ///////////////////////////////////////////
 function initialBet(button, input, account) {
+
+  console.log(button.id + ' was hit');
 
   // THE BET DOWN BUTTON
   if (button.id === variables.buttons.bet_down) {
@@ -197,18 +232,131 @@ function initialBet(button, input, account) {
   // THE BET UP BUTTON
   if (button.id === variables.buttons.bet_up) {
 
-    if (!input || input.value >= account.serverCoins) return;
-    else input.value++;
+    if (!input) return;
 
+    const currBet = Number(input.value) || 0;
+
+    if (currBet >= account.serverCoins) return;
+
+    input.value = currBet + 1;
   }
+}
 
-  // THE DEAL HAND BUTTON
-  if (button.id === variables.buttons.deal_hand) {
+///////////////////////////////////////////
+///                                     ///
+///    BLACKJACK DEAL HAND FUNCTION     ///
+///                                     ///
+///////////////////////////////////////////
+async function dealHand(bet_amt, account) {
+
+  // KEEP USERNAME HERE
+  const userName = account.username;
+
+  //
+  //
+  //  TAKE THE USERS COINS BEFORE DEALING HAND
+  //
+  //
+    try {
+      const response = await fetch("http://localhost:5000/api/take-user-coins", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_name: userName,
+          coin_amount: bet_amt
+        })
+      });
+
+      // Parse the server response FIRST
+      const data = await response.json();
+
+      // Handle server errors
+      if (!response.ok) {
+        console.log("FULL SERVER RESPONSE:", data);
+
+        throw new Error(
+          data?.error ||
+          data?.message ||
+          "Failed to take coins"
+        );
+      }
+
+      // Successful response
+      console.log("Take coins response:", data);
+      user_coins.textContent = 'Server Coins: ' + data.server_points;
+      deal();
+
+    } catch (error) {
+
+      console.error("Take coins error:", error);
+
+    }
 
 
-    
+    function deal() {
+
+      // HIDE THE START WRAPPER
+      hideShowDomObj(true, null, null, variables.menus.mainMenu.start_wrap);
+
+      // HIDE THE DEAL HAND BTN
+      hideShowDomObj(true, null, variables.buttons.deal_hand, null);
+
+      // SHOW THE USER FUNCTIONS
+      hideShowDomObj(null, true, move_hit.id, null);
+      hideShowDomObj(null, true, move_split.id, null);
+      hideShowDomObj(null, true, move_dbl_down.id, null);
+
+      hideShowDomObj(null, true, null, card_wrap.classList, 'flex');
+
+      const card1 = Number(randNum(1, 13));
+      let player_card_1 = genCard(card1);
+      player_card_1 = createImage(player_card_1, null, null);
+
+      player_card_wrap.append(player_card_1);
+
+      const card2 = Number(randNum(1, 13));
+      let player_card_2 = genCard(card2);
+      player_card_2 = createImage(player_card_2, null, null);
+
+      player_card_wrap.append(player_card_2);
+
+      setTimeout(() => {
+
+        game_wrapper.innerHTML = '';
+
+        mainMenu(account);
+
+      }, 3000);
+      
+      
+
+      console.log(player_card_1);
+
+
+    }
+
+  function genCard(cardNumber) {
+
+    const prepend = 'images/games/blackjack/';
+    let card;
+
+    if (cardNumber <= 10) {
+     card = `${cardNumber}.gif`;
+    }
+
+    if (cardNumber === 11) card = '10JACK.gif';
+    if (cardNumber === 12) card = '10QUEEN.gif';
+    if (cardNumber === 13) card = '10KING.gif';
+
+    card = prepend + card;
+
+    return card;
   }
 
 }
+
 
 

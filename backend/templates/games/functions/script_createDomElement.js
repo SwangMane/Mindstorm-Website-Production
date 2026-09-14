@@ -83,7 +83,7 @@ export function createInput(disabled, visible, type, mode, text, defaultvalue, c
   if (text) input.placeholder = text;
 
   // IF THERE IS TO BE A DEFAULT VALUE
-  if (defaultvalue) input.value = defaultvalue;
+  if (defaultvalue !== undefined && defaultvalue !== null ) input.value = defaultvalue;
 
   // IF THE INPUT HAS CLASSES
   if (classes) input.classList = classes;
@@ -102,3 +102,26 @@ export function createInput(disabled, visible, type, mode, text, defaultvalue, c
   // RETURN THE INPUT
   return input;
 }
+
+/////////////////////////////////////////////////
+///                                           ///
+///           IMAGE CREATION SCRIPT           ///
+///                                           ///
+/////////////////////////////////////////////////
+export function createImage(src, classes, IDname) {
+
+  // CREATE THE INPUT ELEMENT
+  const image = document.createElement('img');
+
+  if (!src || src === undefined || src === null) return
+  else image.src = src;
+
+  // IF THE INPUT HAS CLASSES
+  if (classes) image.classList = classes;
+
+  // IF THE INPUT HAS AN ID NAME
+  if (IDname) image.id = IDname;
+
+  return image;
+}
+

@@ -339,5 +339,60 @@ def give_user_coins():
     }), 200
 
 
+# -------------------------
+#
+#take coins from a user
+#
+# -------------------------
+@views.route("/api/take-user-coins", methods=["POST"])
+def take_user_coins():
+
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    if current_user.user_role != "Owner":
+        return jsonify({"error": "Forbidden"}), 403
+
+    data = request.get_json()
+
+    user_name = data.get("user_name")
+    coin_amount = data.get("coin_amount")
+
+    if not user_name or coin_amount is None:
+        return jsonify({
+            "error": "user_name and coin_amount are required"
+        }), 400
+
+    try:
+        coin_amount = int(coin_amount)
+    except (TypeError, ValueError):
+        return jsonify({
+            "error": "coin_amount must be a whole number"
+        }), 400
+
+    if coin_amount <= 0:
+        return jsonify({
+            "error": "coin_amount must be greater than 0"
+        }), 400
+
+    user = User.query.filter_by(user_name=user_name).first()
+
+    if not user:
+        return jsonify({
+            "error": "User not found"
+        }), 404
+
+    # minus coins
+    user.user_serverPoints -= coin_amount
+
+    db.session.commit()
+
+    return jsonify({
+        "success": True,
+        "user_name": user.user_name,
+        "server_points": user.user_serverPoints
+    }), 200
+
+
 
     
