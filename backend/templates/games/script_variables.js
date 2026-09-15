@@ -60,7 +60,7 @@ export const games_list = {
       // LINK TO THE GAME PAGE
       link: 'games_blackjack.html',
       // IF THE GAME IS PLAYABLE
-      playable: true,
+      playable: false,
       // IF THE GAME REQUIRES A CANVAS
       needCanvas: false,
     },
@@ -76,7 +76,7 @@ export const games_list = {
       // LINK TO THE GAME PAGE
       link: 'games_budderBlock.html',
       // IF THE GAME IS PLAYABLE
-      playable: true,
+      playable: false,
       // IF THE GAME REQUIRES A CANVAS
       needCanvas: true,
     }
